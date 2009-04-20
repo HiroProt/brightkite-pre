@@ -1,8 +1,8 @@
-<div id="main" class="palm-hasheader">
+<!--<div id="main" class="palm-hasheader">
   <div class="palm-header left">Brightkite</div>
 </div>
-<div class="palm-group">
-  <div class="palm-group-title">I am at...</div>
+<div id="home" class="palm-group">
+  <div class="palm-group-title">I am at... TEST</div>
 	<div class="palm-list">
 	  <div class="palm-row first">
 			<div id="location" class="palm-row-wrapper">
@@ -18,4 +18,43 @@
 		</div>
 	</div>
 </div>
-<div x-mojo-element="Button" id="logout"></div>
+<div x-mojo-element="Button" id="pick"></div>
+<div x-mojo-element="Button" id="activity"></div>
+<div x-mojo-element="Button" id="friends"></div>
+<div x-mojo-element="Button" id="logout"></div>-->
+<div id="home" title="Home" class="panel" selected="true">
+  <a id="header"<% if logged_in? and current_user.checked_in? %> class="checked_in" href="<%= place_path(current_user.private_place) %>" target="_self"<% end %>>
+    <%= user_icon 'smaller', current_user, :class => 'smaller avatar' %>
+    <% if current_user.checked_in? -%>
+    <p>You're checked in @ <%= h(current_user.private_place.name) %></p>
+    <% else -%>
+    <p>You aren't checked in</p>
+    <% end -%>
+    <div class="clear"></div>
+  </a>
+  <fieldset>
+    <div class="row"><%= link_to "Search &amp; check in", search_places_path, :class => 'checkin', :target => '_self' %></div>
+    <div class="row"><%= link_to "What's happening?", person_friendstream_path(@person), :class => 'happening', :target => '_self' %></div>
+    <% if current_user.checked_in? -%>
+    <div class="row"><a class="post" href="<%= new_place_note_path(current_user.private_place) %>" target="_self">Post notes &amp; photos</a></div>
+    <% end -%>
+  </fieldset>
+  <fieldset>
+    <% if @person.checked_in? -%>
+    <div class="row"><%= link_to 'People near me', place_people_path(@person.private_place), :class => 'nearby', :target => '_self' %></div>
+    <% end -%>
+    <div class="row"><%= link_to 'Friends', person_friends_path(@person), :class => 'friends', :target => '_self' %></div>
+    <div class="row"><%= link_to 'Visited places', person_places_path(@person), :class => 'visited', :target => '_self' %></div>
+    <div class="row"><%= link_to 'Placemarks', person_placemarks_path(@person), :class => 'placemarks', :target => '_self' %></div>
+    <div class="row"><a class="messages" href="<%= person_received_messages_path(@person) %>" target="_self">Messages<% if @person.unread_direct_messages.count > 0 %> <span>(<%= @person.unread_direct_messages.count %>)</span><% end %></a></div>
+    <div class="row"><%= link_to "Comments &amp; mentions", person_commentsstream_path(@person), :class => 'mentions comments', :target => '_self' %></div>
+    <% if @person.incoming_friend_requests.count > 0 %>
+      <div class="row"><a class="friendships" href="<%= person_pending_friends_path(@person) %>" target="_self">Friend requests <span>(<%= @person.incoming_friend_requests.count %>)</span></a></div>
+    <% end %>
+    <div class="row"><%= link_to 'Account settings', person_config_path(@person), :class => 'settings', :target => '_self' %></div>
+  </fieldset>
+  <hr />
+  <fieldset>
+    <div class="row"><a href="/account/logout" target="_self">Log out</a></div>
+  </fieldset>
+</div>

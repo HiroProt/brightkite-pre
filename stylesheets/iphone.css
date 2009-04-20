@@ -1,0 +1,2071 @@
+
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+/* iui.css (c) 2007 by iUI Project Members, see LICENSE.txt for license */
+body {
+    margin: 0;
+    font-family: Helvetica;
+    background: #FFFFFF;
+    color: #000000;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: none;
+}
+
+body > *:not(.toolbar) {
+    display: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 45px;
+    width: 100%;
+    min-height: 372px;
+}
+
+body[orient="landscape"] > *:not(.toolbar) {
+    min-height: 268px;
+}
+
+body > *[selected="true"] {
+    display: block;
+}
+
+/************************************************************************************************/
+
+body > .toolbar {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-bottom: 1px solid #2d3642;
+    border-top: 1px solid #6d84a2;
+    padding: 10px;
+    height: 45px;
+    background: url(/images/iphone/toolbar.png) #6d84a2 repeat-x;
+}
+
+.toolbar > h1 {
+    position: absolute;
+    overflow: hidden;
+    left: 50%;
+    margin: 1px 0 0 -75px;
+    height: 45px;
+    font-size: 20px;
+    width: 150px;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #FFFFFF;
+}
+
+body[orient="landscape"] > .toolbar > h1 {
+    margin-left: -125px;
+    width: 250px;
+}
+
+.button {
+    position: absolute;
+    overflow: hidden;
+    top: 8px;
+    right: 6px;
+    margin: 0;
+    border-width: 0 5px;
+    padding: 0 3px;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    white-space: nowrap;
+    background: none;
+    -webkit-border-image: url(/images/iphone/toolButton.png) 0 5 0 5;
+}
+
+.button.private
+{
+  -webkit-border-image: url(/images/iphone/toolButton_private.png) 0 5 0 5;
+}
+
+a.button
+{
+  cursor: pointer;
+}
+
+.blueButton {
+    -webkit-border-image: url(/images/iphone/blueButton.png) 0 5 0 5;
+    border-width: 0 5px;
+}
+
+.leftButton {
+    left: 6px;
+    right: auto;
+}
+
+#backButton,
+#homeButton {
+    left: 6px;
+    right: auto;
+    padding: 0;
+    max-width: 55px;
+    border-width: 0 8px 0 14px;
+    -webkit-border-image: url(/images/iphone/backButton.png) 0 8 0 14;
+    cursor: pointer;
+}
+
+.whiteButton,
+.grayButton,
+.redButton {
+    display: block;
+    border-width: 0 12px;
+    margin: 0 10px 20px 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.whiteButton {
+    -webkit-border-image: url(/images/iphone/whiteButton.png) 0 12 0 12;
+    text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
+}
+
+.grayButton {
+    -webkit-border-image: url(/images/iphone/grayButton.png) 0 12 0 12;
+    color: #FFFFFF;
+}
+
+.redButton {
+    -webkit-border-image: url(/images/iphone/redButton.png) 0 12 0 12;
+    color: #FFFFFF;
+    text-shadow: rgba(0, 0, 0, 0.7) 0 -1px 0;
+}
+
+/************************************************************************************************/
+
+body > ul > li {
+    position: relative;
+    margin: 0;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 8px 0 8px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    list-style: none;
+}
+
+body > ul > li.group {
+    position: relative;
+    top: -1px;
+    margin-bottom: -2px;
+    border-top: 1px solid #7d7d7d;
+    border-bottom: 1px solid #999999;
+    padding: 1px 10px;
+    background: url(/images/iphone/listGroup.png) repeat-x;
+    font-size: 17px;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
+    color: #FFFFFF;
+}
+
+body > ul > li.group:first-child {
+    top: 0;
+    border-top: none;
+}
+
+body > ul > li > a {
+    display: block;
+    margin: -8px 0 -8px -10px;
+    padding: 8px 32px 8px 10px;
+    text-decoration: none;
+    color: inherit;
+    background: url(/images/iphone/listArrow.png) no-repeat right center;
+}
+
+a[target="_replace"] {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 18px;
+    color: cornflowerblue;
+    background-color: #FFFFFF;
+    background-image: none;
+}
+
+/************************************************************************************************/
+    
+body > .dialog {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 417px;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0;
+    text-align: right;
+}
+
+.dialog > fieldset {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-top: 1px solid #6d84a2;
+    padding: 10px 6px;
+    background: url(/images/iphone/toolbar.png) #7388a5 repeat-x;
+}
+
+.dialog > fieldset > h1 {
+    margin: 0 10px 0 10px;
+    padding: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0;
+    text-align: center;
+}
+
+.dialog > fieldset > label {
+    position: absolute;
+    margin: 16px 0 0 6px;
+    font-size: 14px;
+    color: #999999;
+}
+
+input {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    margin: 8px 0 0 0;
+    padding: 6px 6px 6px 44px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/************************************************************************************************/
+
+body > .panel {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #bad1dc;
+}
+
+.panel > fieldset,
+.panel > form > fieldset,
+.dialog > form > fieldset {
+    position: relative;
+    margin: 0 10px 20px 10px;
+    padding: 0;
+    background: #FFFFFF;
+    -webkit-border-radius: 10px;
+    border: 1px solid #b3cad4;
+    text-align: right;
+    font-size: 16px;
+}
+
+.row  {
+    position: relative;
+    min-height: 50px;
+    border-top: 2px solid #b3cad4;
+    -webkit-border-radius: 0;
+    text-align: left;
+    background: url('/images/iphone/row.png') left bottom repeat-x;
+}
+
+fieldset > .row:first-child {
+    border-top: none !important;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+}
+
+fieldset > .row:last-child {
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+}
+
+.row > input,
+.row > .fieldWithErrors > input {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    border: none;
+    padding: 16px 10px 0 110px;
+    height: 50px;
+    background: none;
+}
+
+.row > label {
+    position: absolute;
+    margin: 0 0 0 10px;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.row > .toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.toggle {
+    border: 1px solid #888888;
+    -webkit-border-radius: 6px;
+    background: #FFFFFF url(/images/iphone/toggle.png) repeat-x;
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.toggle[toggled="true"] {
+    border: 1px solid #6f8519;
+    background: #b1d918 url(/images/iphone/toggleOn.png) repeat-x;
+}
+
+.toggleOn {
+    display: none;
+    position: absolute;
+    width: 60px;
+    text-align: center;
+    left: 0;
+    top: 0;
+    color: #FFFFFF;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0;
+}
+
+.toggleOff {
+    position: absolute;
+    width: 60px;
+    text-align: center;
+    right: 0;
+    top: 0;
+    color: #666666;
+}
+
+.toggle[toggled="true"] > .toggleOn {
+    display: block;
+}
+
+.toggle[toggled="true"] > .toggleOff {
+    display: none;
+}
+
+.thumb {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 40px;
+    height: 28px;    
+    border: 1px solid #888888;
+    -webkit-border-radius: 6px;
+    background: #ffffff url(/images/iphone/thumb.png) repeat-x;
+}
+
+.toggle[toggled="true"] > .thumb {
+    left: auto;
+    right: -1px;
+}
+
+.panel > h2,
+.panel > form > h2 {
+    margin: 0 0 8px 14px;
+    font-size: inherit;
+    font-weight: bold;
+    color: #4d4d70;
+    text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 0;
+}
+
+/************************************************************************************************/
+
+#preloader {
+    display: none;
+    background-image: url(/images/iphone/loading.gif), url(/images/iphone/selection.png),
+        url(/images/iphone/blueButton.png), url(/images/iphone/listArrowSel.png), url(/images/iphone/listGroup.png),
+        url('/images/iphone/spinner_public.gif'), url('/images/iphone/spinner_private.gif'), url('/images/iphone/spinner.gif');
+}
+
+/* custom styles */
+
+img.avatar
+{
+  padding: 2px;
+  border: solid 1px #d7d7d7;
+  background-color: #f0f0f0;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+img.marker.avatar
+{
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+img.tiny.avatar
+{
+  width: 16px;
+  height: 16px;
+  background-image: url('/images/default_user_avatar_tiny.png');
+}
+
+img.smaller.avatar
+{
+  width: 32px;
+  height: 32px;
+  background-image: url('/images/default_user_avatar_smaller.png');
+}
+
+img.small.avatar
+{
+  width: 48px;
+  height: 48px;
+  background-image: url('/images/default_user_avatar_small.png');
+}
+
+img.big.avatar
+{
+  width: 80px;
+  height: 80px;
+  background-image: url('/images/default_user_avatar_big.png');
+}
+
+img.huge.avatar
+{
+  width: 140px;
+  height: 140px;
+  background-image: url('/images/default_user_avatar_huge.png');
+}
+
+a
+{
+  color: #058ec4;
+}
+
+.row > a
+{
+  display: block;
+  padding: 15px 32px 15px 10px;
+  font-size: 17px;
+  font-weight: bold;
+  list-style: none;
+  text-decoration: none;
+  text-align: left;
+  border: none;
+  color: inherit;
+  background: url('/images/iphone/listArrow.png') right center no-repeat;
+  -webkit-border-radius: 10px;
+}
+
+/*a[selected], a:active
+{
+  background-color: #194fdb !important;
+  background-image: url('/images/iphone/listArrowSel.png'), url('/images/iphone/selection.png') !important;
+  background-repeat: no-repeat, repeat-x;
+  background-position: right center, left top;
+  color: #fff !important;
+}
+
+a[selected="progress"]
+{
+  background-image: url('/images/iphone/loading.gif'), url('/images/iphone/selection.png') !important;
+}*/
+
+strong, h1, h2
+{
+  font-weight: bold;
+}
+
+hr
+{
+  border: none;
+  border-top: solid 1px #8da2b0;
+  border-bottom: solid 1px #d7e4eb;
+}
+
+fieldset, .clear, .whiteButton
+{
+  clear: both;
+}
+
+.items > .object
+{
+  display: block;
+  clear: both;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  border-top: solid 1px #e1e1e1;
+  background: #fff url('/images/iphone/list_arrow.png') right center no-repeat;
+}
+
+.items > .object:first-child
+{
+  border-top: none;
+}
+
+.items > .object img.avatar
+{
+  /*max-width: 32px;
+  max-height: 32px;*/
+  float: left;
+}
+
+/*.items > .checkin.object img.avatar {
+  max-width: 16px;
+  max-height: 16px;
+}*/
+
+.items > .object img.photo
+{
+  float: right;
+  width: 80px;
+  height: 80px;
+  margin: 0 25px 0 10px;
+}
+
+.items > .object h2
+{
+  margin: -2px 30px 0 50px;
+  font-size: 1.1em;
+}
+
+.items > .object p
+{
+  margin: 0 30px 0 50px;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.items > .checkin.object p
+{
+  font-size: 0.7em;
+  color: #999;
+}
+
+.items > .object p.details
+{
+  margin: 8px 25px 0 50px;
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+.items > .photo.object p.details
+{
+  margin-right: 0;
+}
+
+.items > .checkin.object p.details
+{
+  margin: 3px 25px 0 50px;
+}
+
+.pagination
+{
+  border-top: solid 1px #e1e1e1;
+  background: #fff;
+  text-align: center;
+}
+
+.pagination > a
+{
+  display: block;
+  padding: 20px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #3b8bff;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+.pagination > p
+{
+  display: block;
+  padding: 20px;
+  font-size: 1.5em;
+  color: #999;
+  line-height: 20px;
+}
+
+.pagination > a[rel='next']
+{
+  text-align: right;
+}
+
+.pagination > a[rel='prev'],
+.pagination > a[rel='prev start']
+{
+  float: left;
+  text-align: left;
+}
+
+.pagination span.disabled
+{
+  display: none;
+}
+
+.stream.panel
+{
+  background: #fff;
+}
+
+#home > #header,
+.stream > #header,
+.post > #header
+{
+  display: block;
+  margin: 0 0 20px 0;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  color: #fff;
+  text-decoration: none;
+  background: #456b82;
+  border-bottom: solid 1px #1c2937;
+}
+
+#header.checked_in
+{
+  background: #456b82 url('/images/iphone/headerArrow.png') right center no-repeat !important;
+}
+
+#home > #header > img.avatar
+{
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 0;
+  border: solid 1px #fff;
+}
+
+#home > #header > p,
+.stream > #header > p,
+.post > #header > p
+{
+  margin-top: 9px;
+  padding: 0 20px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stream > #header > p,
+.post > #header > p
+{
+  margin-top: 0;
+}
+
+.toolbar
+{
+  text-align: center;
+}
+
+.row > a > span
+{
+  font-weight: normal;
+  font-size: 0.8em;
+  color: #596872;
+}
+
+.toolbar > #logo
+{
+  margin: -7px 0 0 0;
+}
+
+.logo.toolbar > h1
+{
+  display: none;
+}
+
+.home.toolbar > #homeButton,
+.home.toolbar > #backButton
+{
+  display: none;
+}
+
+#login.panel
+{
+  top: 0;
+  min-height: 417px;
+  padding-top: 10px;
+  background: #223d51 url('/images/iphone/bg_login.png') left top repeat-x;
+}
+
+#login > .blurb
+{
+  margin-bottom: 40px;
+  text-align: center;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.4) -1px -2px 0;
+}
+
+#login fieldset,
+#login fieldset > .row
+{
+  border-color: #223d51;
+}
+
+.message_wrap > div
+{
+  padding: 10px 30px;
+  color: #000;
+  -webkit-border-radius: 10px;
+}
+
+.message_wrap > div.notice
+{
+  background: #fffacd;
+  border: solid 1px #ffdd43;
+}
+
+.message_wrap > div.error
+{
+  background: #ffe4e5;
+  border: solid 1px #ffa299;
+}
+
+.message_wrap
+{
+  padding: 10px;
+  background: #bad1dc;
+}
+
+.login.message_wrap
+{
+  background: transparent;
+}
+
+#placemarks > .message_wrap,
+#objects > .message_wrap,
+#friendships > .message_wrap
+{
+  margin-bottom: 0;
+}
+
+#search
+{
+  background: #fff;
+}
+
+#search > #header
+{
+  padding: 10px 0 20px 0;
+  background: #bad1dc;
+  border-bottom: solid 1px #999;
+}
+
+#search form > .whiteButton
+{
+  margin: 20px 10px 0 10px;
+}
+
+#search_form div > label
+{
+  
+}
+
+#search_form > fieldset > div
+{
+  padding: 0 10px 0 10px;
+}
+
+#search_form div > input[type='search'],
+#search_form div > input[type='text'] {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border: none;
+  -webkit-border-radius: 19px;
+  z-index: 5 !important;
+}
+
+#search_form label > span {
+  float: right;
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+}
+
+#search_form label > span img {
+  position: relative;
+  top: 2px;
+  vertical-align: bottom;
+}
+
+span.delete
+{
+  position: absolute;
+  right: 10px;
+  margin-top: -39px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: url('/images/iphone/cancel.png') center center no-repeat;
+  cursor: pointer;
+  z-index: 10 !important;
+}
+
+ul.list
+{
+  background: #fff;
+}
+
+ul.list > li
+{
+  position: relative;
+  border: none;
+  background: url('/images/iphone/results_arrow.png') right center no-repeat;
+}
+
+ul.list > li.loading,
+ul.list > li.empty
+{
+  padding: 30px;
+  font-size: 1.5em;
+  text-align: center;
+  color: #999;
+  background: none;
+  border-bottom: solid 1px #e1e1e1;
+}
+
+ul.list > li.empty
+{
+  color: #333;
+}
+
+ul.list > li > a {
+  position: relative;
+  display: block;
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: solid 1px #e1e1e1;
+  z-index: 1;
+}
+
+.checkin_button {
+  position: absolute !important;
+  display: inline !important;
+  top: 8px;
+  right: 45px;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  z-index: 10;
+}
+
+ul.list > li > span.go {
+ position: absolute;
+ top: 8px;
+ right: 10px;
+}
+
+#search > ul.list > li > a > h2,
+#search > ul.list > li > a > p {
+  margin-right: 110px;
+}
+
+#search > ul.list > li {
+  background-image: none;
+}
+
+.checkin.object img.avatar {
+  margin-left: 16px;
+}
+
+.nav {
+  padding: 10px;
+  background: #456b82;
+  border-top: solid 1px #65879a;
+  border-bottom: solid 1px #1c2937;
+}
+
+ul.switcher {
+  position: relative;
+  min-height: 27px;
+  background: #192d3b;
+  border: solid 1px #192d3b;
+  -webkit-border-radius: 4px;
+  background: url('/images/iphone/bg_switcher.png') bottom repeat-x;
+}
+
+ul.switcher > li {
+  display: block;
+  width: 33%;
+}
+
+ul.switcher > li.selected {
+  margin-top: -1px;
+  background: url('/images/iphone/bg_switcher_selected.png') bottom repeat-x;
+  border-top: solid 1px #213445;
+  border-bottom: solid 1px #213445;
+}
+
+ul.switcher > li.center.selected {
+  border-top: none;
+  border-bottom: none;
+}
+
+ul.switcher > li.clear {
+  clear: both;
+}
+
+ul.switcher > li.left {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  border-left: solid 1px #192d3b;
+  border-right: solid 1px #192d3b;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+}
+
+ul.switcher > li.right {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  border-left: solid 1px #192d3b;
+  border-right: solid 1px #192d3b;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+}
+
+ul.switcher > li.center {
+  width: 34%;
+  margin: 0 auto;
+}
+
+ul.switcher > li > a {
+  display: block;
+  line-height: 27px;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+}
+
+.post ul.switcher > li,
+#messages ul.switcher > li,
+.mentions.stream ul.switcher > li,
+.comments.stream ul.switcher > li {
+  width: 50%;
+}
+
+.stream > #header,
+.post > #header
+{
+  margin-bottom: 0;
+  border-bottom-color: #305064;
+}
+
+#place > .title,
+#person > .title
+{
+  margin: 15px 10px 0 10px;
+  padding: 10px 15px;
+  background: #fff;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border: solid 1px #b3cad4;
+}
+
+#person > .title {
+  border-bottom-color: #fff;
+}
+
+#place > .title {
+  margin-bottom: 15px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+}
+
+#place > .title > h2,
+#person > .title > h2
+{
+  margin: 0;
+  color: #333;
+  text-shadow: none;
+}
+
+#place > .title > p,
+#person > .title > p
+{
+  margin: 3px 0 0 0;
+  font-size: 0.8em;
+  color: #333;
+}
+
+#person > .title > img.avatar
+{
+  float: left;
+}
+
+#person > .title > h2,
+#person > .title > p
+{
+  margin-left: 65px;
+}
+
+a.map
+{
+  display: block;
+  margin: 2px 10px 20px 10px;
+  padding: 10px 30px 10px 10px;
+  background: #fff url('/images/iphone/listArrow.png') right center no-repeat;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border: solid 1px #b3cad4;
+}
+
+#place > a.map,
+#person > a.map,
+#object > a.map {
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+}
+
+a.map > #map
+{
+  position: relative;
+  width: 255px;
+  height: 150px;
+  margin: 0 auto;
+  border: solid 1px #ddd;
+}
+
+#object a.map
+{
+  //margin-top: 2px;
+  //border-top-color: #fff;
+}
+
+#person > .title > p > a
+{
+  color: inherit;
+  text-decoration: none;
+}
+
+.toggleOff > img,
+.toggleOn > img
+{
+  position: relative;
+  top: -2px;
+}
+
+#object .details
+{
+  padding: 10px;
+  background: #fff;
+}
+
+#object .content
+{
+  margin-bottom: 20px;
+  background: #f0f0f0;
+  border-bottom: solid 1px #999;
+}
+
+#object .details img.avatar
+{
+  float: left;
+  margin-right: 10px;
+}
+
+#object .details a
+{
+  color: inherit;
+  text-decoration: none;
+}
+
+#object .details > h2
+{
+  margin: 0 0 0 50px;
+  font-size: 1.3em;
+}
+
+#object .details > p
+{
+  margin: 5px 0 0 50px;
+  font-size: 0.9em;
+  color: #999;
+}
+
+#object .text.object > .content
+{
+  padding: 20px 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+#object .photo.object > .content
+{
+  text-align: center;
+}
+
+#object .photo.object > .content > img.photo {
+  width: 310px;
+  margin: 5px;
+}
+
+body[orient='landscape'] #object .photo.object > .content > img.photo {
+  width: 470px;
+}
+
+#object .photo.object > .content > p
+{
+  margin: 5px 10px 15px 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: left;
+}
+
+#object .checkin.object > .details,
+#object .default.object > .details
+{
+  margin-bottom: 20px;
+}
+
+#object .checkin.object > .details > p
+{
+  overflow: auto;
+  white-space: normal;
+}
+
+#homeButton
+{
+  position: absolute;
+  top: 8px;
+  left: 6px;
+}
+
+#homeButton > img
+{
+  margin-top: 5px;
+}
+
+#backButton
+{
+  left: 49px;
+}
+
+#post_button,
+#search_button,
+#filters_button,
+#privacy_button
+{
+  width: 20px;
+}
+
+#search_button
+{
+  right: 51px;
+}
+
+#post_button
+{
+  right: 96px;
+}
+
+#filters_button
+{
+  right: 141px;
+}
+
+#post_button > img,
+#search_button > img,
+#filters_button > img,
+#privacy_button > img
+{
+  position: relative;
+  top: 5px;
+}
+
+#post_button > img
+{
+  top: 6px;
+}
+
+#privacy_button > img.public
+{
+  top: 1px;
+  left: 2px;
+}
+
+#privacy_button > img.private
+{
+  top: 2px;
+  left: 0;
+}
+
+.truncate
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.post > form
+{
+  width: 100%;
+  margin-top: 10px;
+  padding: 0 15px;
+  -webkit-box-sizing: border-box;
+}
+
+.post > form textarea
+{
+  width: 100%;
+  padding: 5px;
+  border: none;
+  font-size: 0.9em;
+  -webkit-box-sizing: border-box;
+  -webkit-border-radius: 15px;
+}
+
+.post > form > .whiteButton
+{
+  margin: 10px 0;
+}
+
+.post > h2
+{
+  margin-top: 15px;
+}
+
+.post > .box
+{
+  background: #fff;
+  margin: 15px 15px 15px 15px;
+  padding: 15px 20px;
+  -webkit-border-radius: 15px;
+}
+
+.post > .box > p
+{
+  margin-top: 20px;
+}
+
+.post > .box > p:first-child
+{
+  margin-top: 0;
+}
+
+.post p.code
+{
+  text-align: center;
+}
+
+.post p.code > a
+{
+  padding: 10px 5px;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: inherit;
+  text-decoration: none;
+  background: #edf6cb;
+}
+
+#radius_selection,
+.filters_selection
+{
+  padding: 5px 10px;
+  font-size: 0.8em;
+  background: #fff;
+  text-align: center;
+  border-bottom: solid 1px #ccc;
+}
+
+#radius_selection > form > label
+{
+  width: 80px;
+  margin-right: 5px;
+}
+
+.filters_selection label {
+  float: left;
+  position: relative;
+  top: 6px;
+}
+
+.filters_selection select {
+  float: right;
+}
+
+#home .row > a
+{
+  padding-left: 60px;
+  background-repeat: no-repeat;
+}
+
+#home .row > label
+{
+  padding-left: 46px;
+}
+
+.row > a.checkin
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_checkin.png') 20px center;
+}
+
+.row > a.happening
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_happening.png') 16px center;
+}
+
+.row > a.post
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_post_home.png') 12px center;
+}
+
+.row > a.nearby
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_nearby.png') 16px center;
+}
+
+.row > a.friends
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_friends.png') 19px center;
+}
+
+.row > a.visited
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_visited.png') 21px center;
+}
+
+.row > a.placemarks
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_placemarks.png') 21px center;
+}
+
+.row > a.messages
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_messages.png') 20px center;
+}
+
+.row > a.comments {
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_comments.png') 14px center;
+}
+
+.row > a.friendships
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_friend_req.png') 18px center;
+}
+
+.row > a.settings
+{
+  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_settings.png') 17px center;
+}
+
+h3
+{
+  margin: 0 15px;
+  font-size: 0.9em;
+  color: #838aa5;
+}
+
+#map > a
+{
+  position: relative;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: solid 1px;
+}
+
+h2 > a.user,
+h2 > a.place
+{
+  text-shadow: none;
+  text-decoration: none;
+  color: #333;
+}
+
+#message > h2,
+#note > h2,
+#note > h3
+{
+  margin: 15px 15px 3px 15px;
+}
+
+p#counter
+{
+  margin: 0 0 0 15px;
+  font-size: 0.8em;
+  color: #77868d;
+}
+
+#friends,
+#visitors,
+#nearby_users,
+#placemarks,
+#places,
+#messages,
+#friendships
+{
+  background: #fff;
+}
+
+#friends > .items > a.friend,
+#visitors > .items > a.visitor,
+#nearby_users > .items > a.nearby_user,
+#places > .items > a.place,
+#messages > .items > div.message,
+#friendships > .items > div.friendship
+{
+  position: relative;
+  display: block;
+  padding: 10px;
+  border-bottom: solid 1px #e1e1e1;
+  text-decoration: none;
+  color: inherit;
+  background: url('/images/iphone/list_arrow.png') right center no-repeat;
+}
+
+#messages > .items > div.message,
+#friendships > .items > div.friendship
+{
+  background: none;
+}
+
+#friends img.avatar,
+#visitors img.avatar,
+#nearby_users img.avatar,
+#places img.icon,
+#messages img.avatar,
+#friendships img.avatar
+{
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+#friends h2,
+#visitors h2,
+#nearby_users h2,
+#places h2,
+#messages h2,
+#friendships h2
+{
+  margin: 0 25px 0 0;
+  font-size: 1.1em;
+}
+
+#messages h2 > a,
+#friendships h2 > a
+{
+  color: inherit;
+  text-decoration: inherit;
+}
+
+#friends h2.trusted
+{
+  display: inline;
+  padding-right: 25px;
+  background: url('/images/icon-trusted.png') right 5px no-repeat;
+}
+
+#friends h3,
+#visitors h3,
+#nearby_users h3,
+#places h3,
+#messages h3,
+#friendships h3
+{
+  margin: 9px 25px 0 0;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #999;
+}
+
+#places h3
+{
+  margin-top: 3px;
+}
+
+#messages h3
+{
+  margin-top: 3px;
+}
+
+#messages p
+{
+  margin-top: 10px;
+  margin-left: 60px;
+  color: #666;
+}
+
+#placemarks .details
+{
+  float: left;
+  margin-right: 130px;
+}
+
+#placemarks .actions,
+#messages .actions,
+#friendships .actions
+{
+  position: absolute;
+  top: 12px;
+  right: 10px;
+}
+
+#placemarks .actions > a > img,
+#messages .actions > a > img,
+#friendships .actions > a > img
+{
+  margin-left: 5px;
+}
+
+#placemarks > .items > .placemark
+{
+  position: relative;
+  padding: 10px;
+  border-bottom: solid 1px #fff;
+  background: #f5f5f5;
+}
+
+#placemarks .placemark a
+{
+  text-decoration: none;
+}
+
+#placemarks > .items > .placemark.even
+{
+  background: #e6e8ea;
+}
+
+#placemarks .placemark h2
+{
+  margin-top: 0;
+  font-size: 1.1em;
+}
+
+#placemarks .placemark h3
+{
+  margin: 0 0 5px 0;
+}
+
+#placemarks .placemark h3 > a
+{
+  font-size: 0.75em;
+  font-weight: bold;
+  color: #999;
+}
+
+#map > img.avatar
+{
+  position: absolute;
+  z-index: 5;
+  top: 20px;
+  left: 97px
+}
+
+#map > img.marker
+{
+  position: absolute;
+  z-index: 5;
+  top: 40px;
+  left: 109px;
+}
+
+#person > #profile
+{
+  margin: 2px 10px 20px 10px;
+  padding: 10px 15px;
+  background: #fff;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border: solid 1px #b3cad4;
+  border-top-color: #fff;
+  
+}
+
+#person > #profile.elsewhere {
+  margin-bottom: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-color: #fff;
+}
+
+#person > #social_links {
+  margin: 2px 10px 20px 10px;
+  padding: 10px 15px;
+  background: #fff;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border: solid 1px #b3cad4;
+  border-top-color: #fff;
+}
+
+#person > #social_links > p {
+  margin-bottom: 10px;
+}
+
+#person > #social_links > a {
+  margin-right: 1px;
+}
+
+body[orient="landscape"] #person > #social_links > a {
+  margin-right: 5px;
+}
+
+#logout
+{
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+#logout > a
+{
+  font-size: 1.3em;
+  color: #77868d;
+  text-decoration: none;
+}
+
+div.blank
+{
+  margin: 15px 10px;
+  padding: 10px 15px;
+  background: #cee8f7;
+  border: solid 1px #cee8f7;
+  -webkit-border-radius: 10px;
+}
+
+div.blank > h4
+{
+  font-weight: bold;
+}
+
+div.blank > p
+{
+  margin-top: 10px;
+  color: #666;
+}
+
+hr
+{
+  border: none;
+  border-top: solid 1px #eee;
+}
+
+#filters_container .row > label
+{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 15px;
+  -webkit-box-sizing: border-box;
+}
+
+#filters_container .row > label > input[type='checkbox']
+{
+  width: 20px;
+  height: 20px;
+  margin: 15px 0 0 0;
+  padding: 0;
+  float: right;
+}
+
+#filters_container > h2 {
+  margin: 15px 10px;
+  text-align: left;
+  font-weight: bold;
+  color: #fff;
+}
+
+#home > hr
+{
+  margin: 0 15px 20px 15px;
+  border-top: solid 1px #869aa8;
+  border-bottom: solid 1px #eff4f6;
+}
+
+.object > div.icons {
+  display: block;
+  position: absolute;
+  width: 50px;
+  margin: 43px 0 0 1px;
+  vertical-align: middle;
+  font-size: 0.6em;
+  color: #999;
+}
+
+.checkin.object > div.icons {
+  width: 25px;
+  margin: 0 0 0 -8px;
+  text-align: center;
+}
+
+.object > div.icons > img {
+  vertical-align: middle;
+}
+
+.checkin.object > div.icons > img {
+  display: block;
+  margin: 0 auto;
+}
+
+.object > div.icons > img.privacy {
+  display: block;
+  margin: 2px 0 0 1px;
+  margin-top: 2px;
+  margin-left: 1px;
+}
+
+.checkin.object > div.icons > img.privacy {
+  top: 0;
+  left: 1px;
+  margin: 0 0 2px 8px;
+}
+
+#friendship h2
+{
+  margin: 15px 10px;
+}
+
+#friendship h2 > a
+{
+  color: #333;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+#friendship fieldset.trust > .row > p
+{
+  padding: 10px 15px;
+  color: #666;
+}
+
+#friendship fieldset.trust > .row
+{
+  background-image: none;
+}
+
+#friendship fieldset.trust > .row > label
+{
+  padding-left: 25px;
+  background: url('/images/icon-trusted.png') left 18px no-repeat;
+}
+
+#search_form fieldset > div > label
+{
+  width: 100%;
+  margin: 10px 0 0 15px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #648299;
+  text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
+}
+
+#search_form fieldset > div > label > span
+{
+  display: inline;
+  font-weight: normal;
+}
+
+#search_form fieldset > div:first-child > label
+{
+  margin-top: 0;
+}
+
+.subheader
+{
+  display: block;
+  padding: 10px;
+  background: #bad1dc;
+  border-bottom: solid 1px #91B6C7;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.subheader > .box
+{
+  padding: 10px;
+  background: #fff;
+  border: solid 1px #fff;
+  -webkit-border-radius: 10px;
+}
+
+.subheader > .box > img.avatar
+{
+  float: left;
+}
+
+.person.subheader > .box > h2,
+.person.subheader > .box > p
+{
+  margin: 0 0 0 45px;
+}
+
+.subheader > .box > h3
+{
+  margin: 0;
+}
+
+.subheader > .box > p
+{
+  margin-top: 7px;
+  font-size: 0.8em;
+  color: #999;
+}
+
+#friendships .actions > a
+{
+  text-decoration: none;
+}
+
+#settings > form,
+#settings > fieldset:first-child
+{
+  margin-top: 20px;
+}
+
+.radio > .row > a
+{
+  background-image: none;
+}
+
+.radio > .row > a > span
+{
+  position: absolute;
+  display: none;
+  right: 20px;
+  top: 18px;
+  width: 16px;
+  height: 15px;
+  background: url('/images/iphone/icon_check.png') no-repeat;
+}
+
+.radio > .row > a.selected > span
+{
+  display: block;
+}
+
+#placemark > h2
+{
+  margin: 15px 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+#privacy_button > img.spinner {
+  position: relative;
+  top: 4px;
+}
+
+#comments {
+  margin: 0 10px 20px 10px;
+  padding: 15px;
+  font-size: 0.9em;
+  background: #fff;
+  border: solid 1px #b3cad4;
+  border-bottom-color: #fff;
+  -webkit-border-radius: 10px;
+}
+
+#comments .comment {
+  clear: both;
+  margin-bottom: 20px;
+}
+
+#comments .comment:last-child {
+  margin-bottom: 7px;
+}
+
+#comments a > img.avatar {
+  float: left;
+}
+
+#comments .comment > p {
+  margin: 0 0 0 50px;
+  padding: 0;
+}
+
+#comments p.author > a {
+  font-weight: bold;
+}
+
+#comments .comment > p.body {
+  margin-top: 10px;
+}
+
+#comments .comment > p.details {
+  font-size: 0.8em;
+  color: #999;
+}
+
+#comments > a.whiteButton {
+  margin: 2px 0 0 0;
+}
+
+#object .message_wrap {
+  padding-bottom: 0;
+  background: #fff;
+}
+
+#comment .message_wrap {
+  padding-bottom: 0;
+}
+
+#comments p.login {
+  text-align: center;
+}
+
+div#attribution {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.8em;
+}
+
+#comment form > p {
+  float: right;
+  position: relative;
+  top: -8px;
+  margin-right: 15px;
+}
+
+#comment input[type="checkbox"] {
+  width: auto;
+  padding: 0;
+}
+
+#comment label {
+  color: #333;
+  padding-left: 5px;
+}
+
+#signup.panel > h2 {
+  margin-top: 10px;
+}
+
+#login.panel input,
+#signup.panel input {
+  -webkit-appearance: none;
+}
+
+#signup.panel input[type="password"] {
+  padding-left: 150px;
+}
+
+#signup.panel div.formError {
+  min-height: 50px;
+  padding: 0 10px;
+  line-height: 50px;
+  text-align: left;
+  background: #ffe4e5;
+  border-top: 2px solid #b3cad4;
+}
+
+#signup.panel div.formError:last-child {
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+}
+
+#signup.panel #privacy_button {
+  top: 22px;
+  right: 10px;
+}
+
+#signup.panel #privacy_button img {
+  left: 4px;
+}
+
+#signup.panel #privacy_toggle {
+  position: relative;
+  min-height: 54px;
+  margin: 0 10px;
+  padding: 10px 50px 10px 10px;
+  background: #fff;
+  border: solid 1px #b3cad4;
+  -webkit-border-radius: 10px;
+}
+
+#signup.panel #privacy_toggle > p {
+  margin-right: 50px;
+}
+
+#signup.panel .description {
+  margin: 0 10px;
+  padding: 10px;
+  background: #fff;
+  border: solid 1px #b3cad4;
+}
+
+#signup.panel .public.description {
+  margin-top: 15px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+}
+
+#signup.panel .private.description {
+  margin-bottom: 15px;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+}
+
+#signup.panel .description h2 {
+  line-height: 40px;
+  padding-left: 50px;
+}
+
+#signup.panel .public.description h2 {
+  background: url('/images/icon-public-med.png') left top no-repeat;
+}
+
+#signup.panel .private.description h2 {
+  background: url('/images/icon-private-med.png') left top no-repeat;
+}
+
+#signup.panel .description p {
+  color: #666;
+}
+
+#signup.panel .description p:last-child {
+  margin-top: 10px;
+}
+
+#signup.panel .description p span {
+  padding: 0 5px;
+  background: #fdfc9a;
+}
+
+#gears_loading {
+  padding: 10px 10px 10px 35px;
+  background: #fffacd url('/images/spinner.gif') 10px 10px no-repeat;
+}
+
+.comments div.details {
+  margin: 8px 25px 0 50px;
+}
+
+.comments div.details p {
+  margin: 0 0 0 75px;
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+.comments div.details p:first-child {
+  float: left;
+  margin: 0 5px 0 0;
+}
+
+.comments div.details img {
+  float: left;
+  max-width: 30px;
+  margin-right: 5px;
+  vertical-align: top;
+}

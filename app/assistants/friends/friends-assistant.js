@@ -31,36 +31,34 @@ FriendsAssistant.prototype.setup = function() {
   };
   this.friendsModel = {
     listTitle: "Friends",
-    items: [
-      { login: "Someone" },
-      { login: "Someone" },
-      { login: "Someone" }
-    ]
+    items: []
   };
   this.controller.setupWidget('friends', this.friendsAttributes, this.friendsModel);
   
-  new Ajax.Request('http://localhost:3000/people/complex/friends.json', {
-    method: "get",
-    onSuccess: this.ajax_success,
-    onFailure: this.ajax_failure
-  });
+  $j.getJSON('http://brightkite.com/people/complex/friends.json?limit=500', function(response) {
+    this.friendsModel.items = [];
+    $j.each(response, function(index, friend) {
+      this.friendsModel.items.push({ login: friend.login });
+      this.controller.modelChanged(this.friendsModel);
+    }.bind(this));
+  }.bind(this));
 }
 
-FriendsAssistant.prototype.ajax_success = function(response) {
-  console.log("model: " + this.friendsModel)
+/*FriendsAssistant.prototype.ajax_success = function(response) {
+  console.log("model: " + this.friendsModel.items);
   response.responseText.evalJSON().each(function(friend) {
     this.friendsModel.items.push({ login: friend.login });
   });
   //this.controller.setWidgetModel('friends', this.friendsModel);
   this.controller.modelChanged(this.friendsModel);
-}
+}*/
 
 FriendsAssistant.prototype.ajax_failure = function() {}
 
 FriendsAssistant.prototype.handleCommand = function(event) {
   if (event.type == Mojo.Event.command) {
     if (event.command.startsWith('scene-'))
-      Mojo.Controller.stageController.pushScene(event.command.gsub('scene-', ''));
+      Mojo.Controller.stageController.swapScene(event.command.gsub('scene-', ''));
     else if (event.command.startsWith('list-'))
       alert("switching to list: " + event.command.gsub('list-', ''));
   }

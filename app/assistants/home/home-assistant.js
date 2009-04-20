@@ -1,8 +1,20 @@
 function HomeAssistant() {}
 
 HomeAssistant.prototype.setup = function() {
-  this.controller.setupWidget('logout',
+  /*this.controller.setupWidget('logout',
     {}, { buttonLabel: "Log out" }
+  );
+  
+  this.controller.setupWidget('pick',
+    {}, { buttonLabel: "Pick a place" }
+  );
+  
+  this.controller.setupWidget('friends',
+    {}, { buttonLabel: "Friends" }
+  );
+  
+  this.controller.setupWidget('activity',
+    {}, { buttonLabel: "What's happening" }
   );
   
   this.controller.setupWidget('location_loading',
@@ -11,12 +23,14 @@ HomeAssistant.prototype.setup = function() {
   );
   
   Mojo.Event.listen($('logout'), Mojo.Event.tap, this.logout.bind(this));
+  Mojo.Event.listen($('pick'), Mojo.Event.tap, this.pick.bind(this));
+  Mojo.Event.listen($('friends'), Mojo.Event.tap, this.friends.bind(this));
+  Mojo.Event.listen($('activity'), Mojo.Event.tap, this.activity.bind(this));*/
   
-  this.controller.serviceRequest('palm://com.palm.location', {
+  /*this.controller.serviceRequest('palm://com.palm.location', {
     method: 'getCurrentPosition',
     parameters: {},
     onSuccess: function(response) {
-      Mojo.Log.error("gps success");
       var accuracy = '';
       if (response.horizAccuracy != -1 && response.vertAccuracy != -1)
         accuracy = (response.horizAccuracy + response.vertAccuracy) / 2;
@@ -34,13 +48,25 @@ HomeAssistant.prototype.setup = function() {
       });
     },
     onFailure: function(response) {
-      Mojo.Log.error("gps failure");
+      Mojo.Log.error("GPS failure");
     }
-  });
+  });*/
 };
 
 HomeAssistant.prototype.logout = function() {
   var credentials = new Mojo.Model.Cookie('credentials');
   credentials.remove();
   Mojo.Controller.stageController.swapScene('main');
+};
+
+HomeAssistant.prototype.pick = function() {
+  Mojo.Controller.stageController.pushScene({ name: 'pick', sceneTemplate: 'home/pick/pick-scene' });
+};
+
+HomeAssistant.prototype.friends = function() {
+  Mojo.Controller.stageController.swapScene('friends');
+};
+
+HomeAssistant.prototype.activity = function() {
+  Mojo.Controller.stageController.swapScene('activity');
 };

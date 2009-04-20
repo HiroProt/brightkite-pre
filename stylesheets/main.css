@@ -14,3 +14,13 @@ p.place.name {
 div.clear {
   clear: both;
 }
+
+#home .palm-row-wrapper {
+  padding: 10px 10px 15px 10px;
+}
+
+#home #location_loading {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+}

@@ -1,0 +1,11 @@
+[
+	{ "source": "app/assistants/stage-assistant.js" },
+	{ "source": "app/assistants/main-assistant.js" },
+	{ "source": "app/assistants/home/home-assistant.js" },
+	{ "source": "app/assistants/home/pick/pick-assistant.js" },
+	{ "source": "app/assistants/friends/friends-assistant.js" },
+	{ "source": "app/assistants/friends/activity-assistant.js" },
+	{ "source": "javascripts/base64.js" },
+	{ "source": "javascripts/jquery.js" },
+	{ "source": "javascripts/global.js" }
+]
