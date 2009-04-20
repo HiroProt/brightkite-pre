@@ -1,0 +1,10 @@
+{
+	"title": "Brightkite",
+	"type": "web",
+	"main": "index.html",
+	"icon": "icon.png",
+	"id": "com.brightkite.app",
+	"version": "1.0",
+	"vendor": "Brightkite",
+	"removable": true
+}

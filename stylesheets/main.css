@@ -1,0 +1,16 @@
+.palm-header {
+  -webkit-border-image: url(/usr/lib/luna/framework/submissions/116.2/images/palm-menu-button.png) 0 25 200 25 repeat repeat;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+p.place.name {
+  font-weight: bold;
+}
+
+div.clear {
+  clear: both;
+}
