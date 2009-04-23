@@ -1,8 +1,7 @@
-
 html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
 
 /* iui.css (c) 2007 by iUI Project Members, see LICENSE.txt for license */
-body {
+.iphone_wrapper {
     margin: 0;
     font-family: Helvetica;
     background: #FFFFFF;
@@ -12,8 +11,7 @@ body {
     -webkit-text-size-adjust: none;
 }
 
-body > *:not(.toolbar) {
-    display: none;
+/*.iphone_wrapper > *:not(.toolbar) {
     position: absolute;
     margin: 0;
     padding: 0;
@@ -29,11 +27,11 @@ body[orient="landscape"] > *:not(.toolbar) {
 
 body > *[selected="true"] {
     display: block;
-}
+}*/
 
 /************************************************************************************************/
 
-body > .toolbar {
+.iphone_wrapper > .toolbar {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -41,7 +39,7 @@ body > .toolbar {
     border-top: 1px solid #6d84a2;
     padding: 10px;
     height: 45px;
-    background: url(/images/iphone/toolbar.png) #6d84a2 repeat-x;
+    background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/toolbar.png') #6d84a2 repeat-x;
 }
 
 .toolbar > h1 {
@@ -60,37 +58,40 @@ body > .toolbar {
     color: #FFFFFF;
 }
 
-body[orient="landscape"] > .toolbar > h1 {
+.iphone_wrapper[orient="landscape"] > .toolbar > h1 {
     margin-left: -125px;
     width: 250px;
 }
 
 .button {
-    position: absolute;
-    overflow: hidden;
-    top: 8px;
-    right: 6px;
-    margin: 0;
-    border-width: 0 5px;
-    padding: 0 3px;
-    width: auto;
-    height: 30px;
-    line-height: 30px;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
-    text-overflow: ellipsis;
-    text-decoration: none;
-    white-space: nowrap;
-    background: none;
-    -webkit-border-image: url(/images/iphone/toolButton.png) 0 5 0 5;
+  position: absolute;
+  overflow: hidden;
+  margin: 0;
+  border-width: 0 5px;
+  padding: 0 3px;
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  white-space: nowrap;
+  background: none;
+  -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/toolButton.png) 0 5 0 5;
+}
+
+.toolbar .button {
+  top: 8px;
+  right: 6px;  
 }
 
 .button.private
 {
-  -webkit-border-image: url(/images/iphone/toolButton_private.png) 0 5 0 5;
+  -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/toolButton_private.png) 0 5 0 5;
 }
 
 a.button
@@ -99,7 +100,7 @@ a.button
 }
 
 .blueButton {
-    -webkit-border-image: url(/images/iphone/blueButton.png) 0 5 0 5;
+    -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/blueButton.png) 0 5 0 5;
     border-width: 0 5px;
 }
 
@@ -115,7 +116,7 @@ a.button
     padding: 0;
     max-width: 55px;
     border-width: 0 8px 0 14px;
-    -webkit-border-image: url(/images/iphone/backButton.png) 0 8 0 14;
+    -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/backButton.png) 0 8 0 14;
     cursor: pointer;
 }
 
@@ -135,24 +136,24 @@ a.button
 }
 
 .whiteButton {
-    -webkit-border-image: url(/images/iphone/whiteButton.png) 0 12 0 12;
+    -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/whiteButton.png) 0 12 0 12;
     text-shadow: rgba(255, 255, 255, 0.7) 0 1px 0;
 }
 
 .grayButton {
-    -webkit-border-image: url(/images/iphone/grayButton.png) 0 12 0 12;
+    -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/grayButton.png) 0 12 0 12;
     color: #FFFFFF;
 }
 
 .redButton {
-    -webkit-border-image: url(/images/iphone/redButton.png) 0 12 0 12;
+    -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/redButton.png) 0 12 0 12;
     color: #FFFFFF;
     text-shadow: rgba(0, 0, 0, 0.7) 0 -1px 0;
 }
 
 /************************************************************************************************/
 
-body > ul > li {
+.iphone_wrapper > ul > li {
     position: relative;
     margin: 0;
     border-bottom: 1px solid #E0E0E0;
@@ -162,32 +163,32 @@ body > ul > li {
     list-style: none;
 }
 
-body > ul > li.group {
+.iphone_wrapper > ul > li.group {
     position: relative;
     top: -1px;
     margin-bottom: -2px;
     border-top: 1px solid #7d7d7d;
     border-bottom: 1px solid #999999;
     padding: 1px 10px;
-    background: url(/images/iphone/listGroup.png) repeat-x;
+    background: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/listGroup.png) repeat-x;
     font-size: 17px;
     font-weight: bold;
     text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
     color: #FFFFFF;
 }
 
-body > ul > li.group:first-child {
+.iphone_wrapper > ul > li.group:first-child {
     top: 0;
     border-top: none;
 }
 
-body > ul > li > a {
+.iphone_wrapper > ul > li > a {
     display: block;
     margin: -8px 0 -8px -10px;
     padding: 8px 32px 8px 10px;
     text-decoration: none;
     color: inherit;
-    background: url(/images/iphone/listArrow.png) no-repeat right center;
+    background: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png) no-repeat right center;
 }
 
 a[target="_replace"] {
@@ -203,7 +204,7 @@ a[target="_replace"] {
 
 /************************************************************************************************/
     
-body > .dialog {
+.iphone_wrapper > .dialog {
     top: 0;
     width: 100%;
     height: 100%;
@@ -222,7 +223,7 @@ body > .dialog {
     border: none;
     border-top: 1px solid #6d84a2;
     padding: 10px 6px;
-    background: url(/images/iphone/toolbar.png) #7388a5 repeat-x;
+    background: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/toolbar.png) #7388a5 repeat-x;
 }
 
 .dialog > fieldset > h1 {
@@ -254,7 +255,7 @@ input {
 
 /************************************************************************************************/
 
-body > .panel {
+.iphone_wrapper > .panel {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     background: #bad1dc;
@@ -279,7 +280,7 @@ body > .panel {
     border-top: 2px solid #b3cad4;
     -webkit-border-radius: 0;
     text-align: left;
-    background: url('/images/iphone/row.png') left bottom repeat-x;
+    background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/row.png') left bottom repeat-x;
 }
 
 fieldset > .row:first-child {
@@ -324,7 +325,7 @@ fieldset > .row:last-child {
 .toggle {
     border: 1px solid #888888;
     -webkit-border-radius: 6px;
-    background: #FFFFFF url(/images/iphone/toggle.png) repeat-x;
+    background: #FFFFFF url(/var/usr/palm/applications/com.brightkite.app/images/iphone/toggle.png) repeat-x;
     font-size: 19px;
     font-weight: bold;
     line-height: 30px;
@@ -332,7 +333,7 @@ fieldset > .row:last-child {
 
 .toggle[toggled="true"] {
     border: 1px solid #6f8519;
-    background: #b1d918 url(/images/iphone/toggleOn.png) repeat-x;
+    background: #b1d918 url(/var/usr/palm/applications/com.brightkite.app/images/iphone/toggleOn.png) repeat-x;
 }
 
 .toggleOn {
@@ -371,7 +372,7 @@ fieldset > .row:last-child {
     height: 28px;    
     border: 1px solid #888888;
     -webkit-border-radius: 6px;
-    background: #ffffff url(/images/iphone/thumb.png) repeat-x;
+    background: #ffffff url(/var/usr/palm/applications/com.brightkite.app/images/iphone/thumb.png) repeat-x;
 }
 
 .toggle[toggled="true"] > .thumb {
@@ -392,9 +393,9 @@ fieldset > .row:last-child {
 
 #preloader {
     display: none;
-    background-image: url(/images/iphone/loading.gif), url(/images/iphone/selection.png),
-        url(/images/iphone/blueButton.png), url(/images/iphone/listArrowSel.png), url(/images/iphone/listGroup.png),
-        url('/images/iphone/spinner_public.gif'), url('/images/iphone/spinner_private.gif'), url('/images/iphone/spinner.gif');
+    background-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/loading.gif), url(/var/usr/palm/applications/com.brightkite.app/images/iphone/selection.png),
+        url(/var/usr/palm/applications/com.brightkite.app/images/iphone/blueButton.png), url(/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrowSel.png), url(/var/usr/palm/applications/com.brightkite.app/images/iphone/listGroup.png),
+        url('/var/usr/palm/applications/com.brightkite.app/images/iphone/spinner_public.gif'), url('/var/usr/palm/applications/com.brightkite.app/images/iphone/spinner_private.gif'), url('/var/usr/palm/applications/com.brightkite.app/images/iphone/spinner.gif');
 }
 
 /* custom styles */
@@ -466,14 +467,14 @@ a
   text-align: left;
   border: none;
   color: inherit;
-  background: url('/images/iphone/listArrow.png') right center no-repeat;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center no-repeat;
   -webkit-border-radius: 10px;
 }
 
 /*a[selected], a:active
 {
   background-color: #194fdb !important;
-  background-image: url('/images/iphone/listArrowSel.png'), url('/images/iphone/selection.png') !important;
+  background-image: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrowSel.png'), url('/var/usr/palm/applications/com.brightkite.app/images/iphone/selection.png') !important;
   background-repeat: no-repeat, repeat-x;
   background-position: right center, left top;
   color: #fff !important;
@@ -481,7 +482,7 @@ a
 
 a[selected="progress"]
 {
-  background-image: url('/images/iphone/loading.gif'), url('/images/iphone/selection.png') !important;
+  background-image: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/loading.gif'), url('/var/usr/palm/applications/com.brightkite.app/images/iphone/selection.png') !important;
 }*/
 
 strong, h1, h2
@@ -509,7 +510,7 @@ fieldset, .clear, .whiteButton
   text-decoration: none;
   color: #000;
   border-top: solid 1px #e1e1e1;
-  background: #fff url('/images/iphone/list_arrow.png') right center no-repeat;
+  background: #fff url('/var/usr/palm/applications/com.brightkite.app/images/iphone/list_arrow.png') right center no-repeat;
 }
 
 .items > .object:first-child
@@ -639,7 +640,7 @@ fieldset, .clear, .whiteButton
 
 #header.checked_in
 {
-  background: #456b82 url('/images/iphone/headerArrow.png') right center no-repeat !important;
+  background: #456b82 url('/var/usr/palm/applications/com.brightkite.app/images/iphone/headerArrow.png') right center no-repeat !important;
 }
 
 #home > #header > img.avatar
@@ -700,7 +701,7 @@ fieldset, .clear, .whiteButton
   top: 0;
   min-height: 417px;
   padding-top: 10px;
-  background: #223d51 url('/images/iphone/bg_login.png') left top repeat-x;
+  background: #223d51 url('/var/usr/palm/applications/com.brightkite.app/images/iphone/bg_login.png') left top repeat-x;
 }
 
 #login > .blurb
@@ -811,7 +812,7 @@ span.delete
   display: block;
   width: 40px;
   height: 40px;
-  background: url('/images/iphone/cancel.png') center center no-repeat;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/cancel.png') center center no-repeat;
   cursor: pointer;
   z-index: 10 !important;
 }
@@ -825,7 +826,7 @@ ul.list > li
 {
   position: relative;
   border: none;
-  background: url('/images/iphone/results_arrow.png') right center no-repeat;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/results_arrow.png') right center no-repeat;
 }
 
 ul.list > li.loading,
@@ -897,7 +898,7 @@ ul.switcher {
   background: #192d3b;
   border: solid 1px #192d3b;
   -webkit-border-radius: 4px;
-  background: url('/images/iphone/bg_switcher.png') bottom repeat-x;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/bg_switcher.png') bottom repeat-x;
 }
 
 ul.switcher > li {
@@ -907,7 +908,7 @@ ul.switcher > li {
 
 ul.switcher > li.selected {
   margin-top: -1px;
-  background: url('/images/iphone/bg_switcher_selected.png') bottom repeat-x;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/bg_switcher_selected.png') bottom repeat-x;
   border-top: solid 1px #213445;
   border-bottom: solid 1px #213445;
 }
@@ -1024,7 +1025,7 @@ a.map
   display: block;
   margin: 2px 10px 20px 10px;
   padding: 10px 30px 10px 10px;
-  background: #fff url('/images/iphone/listArrow.png') right center no-repeat;
+  background: #fff url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center no-repeat;
   -webkit-border-bottom-left-radius: 10px;
   -webkit-border-bottom-right-radius: 10px;
   border: solid 1px #b3cad4;
@@ -1120,7 +1121,7 @@ a.map > #map
   margin: 5px;
 }
 
-body[orient='landscape'] #object .photo.object > .content > img.photo {
+.iphone_wrapper[orient='landscape'] #object .photo.object > .content > img.photo {
   width: 470px;
 }
 
@@ -1317,56 +1318,56 @@ body[orient='landscape'] #object .photo.object > .content > img.photo {
 
 .row > a.checkin
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_checkin.png') 20px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_checkin.png') 20px center;
 }
 
 .row > a.happening
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_happening.png') 16px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_happening.png') 16px center;
 }
 
 .row > a.post
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_post_home.png') 12px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_post_home.png') 12px center;
 }
 
 .row > a.nearby
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_nearby.png') 16px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_nearby.png') 16px center;
 }
 
 .row > a.friends
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_friends.png') 19px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_friends.png') 19px center;
 }
 
 .row > a.visited
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_visited.png') 21px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_visited.png') 21px center;
 }
 
 .row > a.placemarks
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_placemarks.png') 21px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_placemarks.png') 21px center;
 }
 
 .row > a.messages
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_messages.png') 20px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_messages.png') 20px center;
 }
 
 .row > a.comments {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_comments.png') 14px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_comments.png') 14px center;
 }
 
 .row > a.friendships
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_friend_req.png') 18px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_friend_req.png') 18px center;
 }
 
 .row > a.settings
 {
-  background: url('/images/iphone/listArrow.png') right center, url('/images/iphone/icon_settings.png') 17px center;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/listArrow.png') right center, url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_settings.png') 17px center;
 }
 
 h3
@@ -1431,7 +1432,7 @@ p#counter
   border-bottom: solid 1px #e1e1e1;
   text-decoration: none;
   color: inherit;
-  background: url('/images/iphone/list_arrow.png') right center no-repeat;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/list_arrow.png') right center no-repeat;
 }
 
 #messages > .items > div.message,
@@ -1617,7 +1618,7 @@ p#counter
   margin-right: 1px;
 }
 
-body[orient="landscape"] #person > #social_links > a {
+.iphone_wrapper[orient="landscape"] #person > #social_links > a {
   margin-right: 5px;
 }
 
@@ -1845,7 +1846,7 @@ hr
   top: 18px;
   width: 16px;
   height: 15px;
-  background: url('/images/iphone/icon_check.png') no-repeat;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/iphone/icon_check.png') no-repeat;
 }
 
 .radio > .row > a.selected > span
@@ -2068,4 +2069,108 @@ div#attribution {
   max-width: 30px;
   margin-right: 5px;
   vertical-align: top;
+}
+
+.iphone_wrapper > .content {
+  min-height: 388px;
+  padding: 10px;
+  background: #c4d6e4;
+}
+
+.iphone_wrapper fieldset {
+  background: #fff;
+}
+
+.iphone_wrapper > .content > h2 {
+  font-size: 18px;
+  color: #456b82;
+  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 0;
+}
+
+#iam #location {
+  margin-bottom: 10px;
+  background: #fff;
+  border: solid 1px #a7aeb4;
+}
+
+#iam fieldset {
+  border: solid 1px #a7aeb4;
+}
+
+#iam #location > div {
+  border-top: solid 1px #a7aeb4;
+}
+
+#iam #location > div:first-child {
+  border-top: none;
+}
+
+#iam #details {
+  display: none;
+  position: relative;
+  height: 13px;
+  padding: 5px 10px;
+}
+
+#iam #details p {
+  position: absolute;
+  font-size: 11px;
+  color: #666;
+}
+
+#iam #accuracy {
+  left: 170px;
+}
+
+#iam #snap {
+  min-height: 50px;
+  padding: 10px;
+  background: url('/var/usr/palm/applications/com.brightkite.app/images/spinner.gif') center center no-repeat;
+}
+
+#iam #snap h3 {
+  display: none;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+#iam #snap p {
+  display: none;
+  font-size: 15px;
+  color: #666;
+}
+
+#iam #actions {
+  position: relative;
+  height: 49px;
+  text-align: center;
+}
+
+#iam #actions a.button {
+  top: 10px;
+  padding: 0 20px;
+  border-width: 0 5px;
+  -webkit-border-image: url(/var/usr/palm/applications/com.brightkite.app/images/iphone/button-blue.png) 0 5 0 5;
+  text-transform: uppercase;
+}
+
+#iam #actions a.button:last-child {
+  right: 10px;
+}
+
+#iam #actions a.button:first-child {
+  left: 10px;
+}
+
+#iam #actions > span {
+  font-size: 11px;
+  line-height: 49px;
+  color: #666;
+  padding-right: 30px;
+}
+
+#iam fieldset .row a.disabled {
+  color: #999;
 }
