@@ -1,36 +1,79 @@
 function HomeAssistant() {}
 
+HomeAssistant.prototype = {
+  setup: function() {
+    this.last_location_update = '';
+    this.credentials = new Mojo.Model.Cookie('credentials');
+    
+    var place = this.credentials.get().person.place
+    if (place) {
+      console.log("got place: " + place.name);
+    }
+    
+    this.controller.setupWidget('privacy', { trueLabel: "Private", falseLabel: "Public" }, { value: "ON" });
+    this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerSmall }, { spinning: true });
+    this.controller.setupWidget('find', {}, { buttonLabel: "Find me", buttonClass: 'secondary' });
+    this.controller.setupWidget('pick', {}, { buttonLabel: "Pick a place", buttonClass: 'secondary' });
+    this.controller.setupWidget('logout', {}, { buttonLabel: "Log out" });
+    
+    this.controller.listen('find', Mojo.Event.tap, this.find.bind(this));
+    this.controller.listen('pick', Mojo.Event.tap, this.pick);
+    this.controller.listen('checkin', Mojo.Event.tap, this.checkin);
+    this.controller.listen('note', Mojo.Event.tap, this.note);
+    this.controller.listen('photo', Mojo.Event.tap, this.photo);
+    this.controller.listen('logout', Mojo.Event.tap, this.logout.bind(this));
+    
+    this.get_location();
+  },
+  get_location: function() {
+    this.controller.serviceRequest('palm://com.palm.location', {
+      method: 'getCurrentPosition',
+      parameters: {},
+      onSuccess: this.handle_location_response.bind(this)
+    });
+  },
+  handle_location_response: function(location) {
+    var accuracy = (location.horizAccuracy != -1 && location.vertAccuracy != -1) ? (location.horizAccuracy + location.vertAccuracy) / 2 : '';
+    $j.getJSON('http://brightkite.com/places/search.json?q=' + location.latitude + ',' + location.longitude + '&cacc=' + accuracy, function(place) {
+      $j('#place strong').text(place.name);
+      if (place.display_location != place.name)
+        $j('#place em').text(place.display_location).show();
+      
+      $j('#location .title, #loading').hide();
+      $j('#place, #details').show();
+    });
+  },
+  find: function() {
+    $j('#place, #details').hide();
+    $j('#location .title:first, #loading').show();
+    this.get_location();
+  },
+  pick: function() {
+    Mojo.Controller.stageController.pushScene({ name: 'pick', sceneTemplate: 'home/pick/pick-scene' });
+  },
+  checkin: function() {
+    console.log("checkin");
+  },
+  note: function() {
+    console.log("note");
+  },
+  photo: function() {
+    console.log("photo");
+  },
+  logout: function() {
+    this.credentials.remove();
+    Mojo.Controller.stageController.swapScene('main');
+  }
+};
+
+/*function HomeAssistant() {}
+
 HomeAssistant.prototype.setup = function() {
   $$('.row > a').each(function(link) {
     Mojo.Event.listen(link, Mojo.Event.tap, function() {
       Mojo.Controller.stageController.swapScene(link.readAttribute('href').gsub('#', ''));
     });
   });
-  /*this.controller.setupWidget('logout',
-    {}, { buttonLabel: "Log out" }
-  );
-  
-  this.controller.setupWidget('pick',
-    {}, { buttonLabel: "Pick a place" }
-  );
-  
-  this.controller.setupWidget('friends',
-    {}, { buttonLabel: "Friends" }
-  );
-  
-  this.controller.setupWidget('activity',
-    {}, { buttonLabel: "What's happening" }
-  );
-  
-  this.controller.setupWidget('location_loading',
-    { spinnerSize: 'small' },
-    { spinning: true }
-  );
-  
-  Mojo.Event.listen($('logout'), Mojo.Event.tap, this.logout.bind(this));
-  Mojo.Event.listen($('pick'), Mojo.Event.tap, this.pick.bind(this));
-  Mojo.Event.listen($('friends'), Mojo.Event.tap, this.friends.bind(this));
-  Mojo.Event.listen($('activity'), Mojo.Event.tap, this.activity.bind(this));*/
   
   Mojo.Event.listen($('find_button'), Mojo.Event.tap, this.force_find.bind(this));
   
@@ -117,4 +160,4 @@ HomeAssistant.prototype.friends = function() {
 
 HomeAssistant.prototype.activity = function() {
   Mojo.Controller.stageController.swapScene('activity');
-};
+};*/

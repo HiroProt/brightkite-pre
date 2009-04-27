@@ -1,9 +1,65 @@
-<div class="palm-page-header">
-  <div class="palm-page-header-wrapper">
-    <div class="title">
-      <img src="../../../images/logo.png" alt="Brightkite" />
+<div id="home">
+  <div class="palm-page-header">
+    <div class="palm-page-header-wrapper">
+      <div id="privacy" x-mojo-element="ToggleButton"></div>
+      <div class="title left" style="padding-top: 10px">
+        <img src="/var/usr/palm/applications/com.brightkite.app/images/logo.png" alt="Brightkite" />
+      </div>
     </div>
   </div>
+  <div class="palm-group">
+    <div class="palm-group-title">I'm at...</div>
+    <div class="palm-list">
+      <div id="location" class="palm-row first">
+        <div class="palm-row-wrapper">
+          <div id="loading" x-mojo-element="Spinner"></div>
+          <div class="title">
+            Finding you...
+          </div>
+          <div id="place" class="title">
+            <strong>Name</strong>
+            <em>Address</em>
+          </div>
+        </div>
+      </div>
+      <div id="details" class="palm-row">
+        <div class="palm-row-wrapper">
+          <div class="title">
+            <span>Last update: <strong>just now</strong></span>
+            <span>Accuracy: <strong>0 meters</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="palm-row last">
+        <div class="palm-row-wrapper">
+          <div id="find" x-mojo-element="Button"></div>
+          <div id="pick" x-mojo-element="Button"></div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="palm-group">
+    <div class="palm-group-title">I want to...</div>
+    <div class="palm-list">
+      <div id="checkin" class="palm-row first" x-mojo-tap-highlight="momentary">
+        <div class="palm-row-wrapper">
+          <div class="title">Check in</div>
+        </div>
+      </div>
+      <div id="note" class="palm-row" x-mojo-tap-highlight="momentary">
+        <div class="palm-row-wrapper">
+          <div class="title">Post a note</div>
+        </div>
+      </div>
+      <div id="photo" class="palm-row last" x-mojo-tap-highlight="momentary">
+        <div class="palm-row-wrapper">
+          <div class="title">Post a photo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="logout" x-mojo-element="Button"></div>
 </div>
 
 <!--<div id="main" class="palm-hasheader">

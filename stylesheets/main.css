@@ -1,26 +1,38 @@
-.palm-header {
-  -webkit-border-image: url(/usr/lib/luna/framework/submissions/116.2/images/palm-menu-button.png) 0 25 200 25 repeat repeat;
-}
-
-p {
-  margin: 0;
-  padding: 0;
-}
-
-p.place.name {
-  font-weight: bold;
-}
-
-div.clear {
+.clear {
   clear: both;
 }
 
-#home .palm-row-wrapper {
-  padding: 10px 10px 15px 10px;
+em {
+  font-style: italic !important;
 }
 
-#home #location_loading {
-  position: absolute;
-  top: 25px;
-  right: 10px;
+#home #place,
+#home #details {
+  display: none;
+}
+
+#home #place em {
+  display: none;
+  font-size: 0.8em;
+}
+
+#home #details {
+  min-height: 0;
+}
+
+#home #details .title {
+  margin: 0;
+  padding: 5px 15px 8px 15px;
+  font-size: 0.6em;
+  color: #999;
+}
+
+#home #find,
+#home #pick {
+  float: left;
+  width: 150px;
+}
+
+.palm-button {
+  text-transform: none;
 }

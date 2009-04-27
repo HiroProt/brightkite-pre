@@ -1,23 +1,29 @@
-<div id="main" class="palm-hasheader">
-  <div class="palm-header left">Brightkite</div>
+<div id="main">
+  <div class="palm-page-header">
+    <div class="palm-page-header-wrapper">
+      <div class="title left" style="padding-top: 10px">
+        <img src="/var/usr/palm/applications/com.brightkite.app/images/logo.png" alt="Brightkite" />
+      </div>
+    </div>
+  </div>
+  <div class="palm-group">
+    <div class="palm-group-title">Log in</div>
+  	<div class="palm-list">
+   		<div class="palm-row first">
+  			<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+  				<div class="title">
+        		<div id="username" x-mojo-element="TextField"></div>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="palm-row last">
+  			<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+  				<div class="title">
+        		<div id="password" x-mojo-element="PasswordField"></div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  <div x-mojo-element="Button" id="login"></div>
 </div>
-<div class="palm-group">
-  <div class="palm-group-title">Log in</div>
-	<div class="palm-list">
- 		<div class="palm-row first">
-			<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
-				<div class="title">
-      		<div id="username" x-mojo-element="TextField"></div>
-				</div>
-			</div>
-		</div>
-		<div class="palm-row last">
-			<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
-				<div class="title">
-      		<div id="password" x-mojo-element="PasswordField"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div x-mojo-element="Button" id="login"></div>
