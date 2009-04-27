@@ -5,10 +5,10 @@ HomeAssistant.prototype = {
     this.last_location_update = '';
     this.credentials = new Mojo.Model.Cookie('credentials');
     
-    var place = this.credentials.get().person.place
+    /*var place = this.credentials.get().person.place
     if (place) {
       console.log("got place: " + place.name);
-    }
+    }*/
     
     this.controller.setupWidget('privacy', { trueLabel: "Private", falseLabel: "Public" }, { value: "ON" });
     this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerSmall }, { spinning: true });
