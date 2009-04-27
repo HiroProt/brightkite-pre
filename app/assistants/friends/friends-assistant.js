@@ -1,31 +1,42 @@
 function FriendsAssistant() {}
 
-FriendsAssistant.prototype.setup = function() {
-  
-  this.controller.setupWidget(Mojo.Menu.viewMenu, undefined,
-    this.model = {
-      items: [
+FriendsAssistant.prototype = {
+  setup: function() {
+    var user = new Mojo.Model.Cookie('credentials').get();
+    console.log("got user");
+    
+    this.stream_model = { items: [] };
+    
+    this.controller.setupWidget('stream', { itemTemplate: 'friends/list-item' }, this.stream_model);
+    this.controller.setupWidget(Mojo.Menu.viewMenu, undefined,
+      { items: [
         { items: [
           { label: "Activity", command: 'list-activity', width: 160 },
           { label: "People", command: 'list-people', width: 160 }
         ]} 
-      ]
-    }
-  );
-  
-  this.controller.setupWidget(Mojo.Menu.commandMenu,
-    this.attributes = {},
-    this.model = {
-      items: [
-        { label: "Ia", command: 'scene-main' },
-        { label: "Fr", command: 'scene-friends' },
-        { label: "Ne", command: 'scene-nearby' },
-        { label: "Un", command: 'scene-universe' },
-        { label: "Ot", command: 'scene-other' }
-      ]
-    }
-  );
-  
+      ]}
+    );
+    
+    var url = 'http://brightkite.com/people/' + user.login + '/friendstream.json';
+    console.log("getting " + url);
+    $j.ajax({
+      url: url,
+      success: function(response) {
+        console.log("success");
+        $j.each(response, function(index, object) {
+          console.log(object);
+          this.stream_model.items.push({ login: object.creator.login });
+          this.controller.modelChanged(this.stream_model);
+        }.bind(this));
+      }.bind(this),
+      error: function(response) {
+        Mojo.Log.error("Error getting friendstream");
+      }
+    });
+  }
+}
+
+/*FriendsAssistant.prototype.setup = function() {
   this.friendsAttributes = {
     itemTemplate: 'friends/list-item'
   };
@@ -44,17 +55,6 @@ FriendsAssistant.prototype.setup = function() {
   }.bind(this));
 }
 
-/*FriendsAssistant.prototype.ajax_success = function(response) {
-  console.log("model: " + this.friendsModel.items);
-  response.responseText.evalJSON().each(function(friend) {
-    this.friendsModel.items.push({ login: friend.login });
-  });
-  //this.controller.setWidgetModel('friends', this.friendsModel);
-  this.controller.modelChanged(this.friendsModel);
-}*/
-
-FriendsAssistant.prototype.ajax_failure = function() {}
-
 FriendsAssistant.prototype.handleCommand = function(event) {
   if (event.type == Mojo.Event.command) {
     if (event.command.startsWith('scene-'))
@@ -62,4 +62,4 @@ FriendsAssistant.prototype.handleCommand = function(event) {
     else if (event.command.startsWith('list-'))
       alert("switching to list: " + event.command.gsub('list-', ''));
   }
-}
+}*/

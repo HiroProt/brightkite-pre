@@ -15,6 +15,7 @@ HomeAssistant.prototype = {
     this.controller.setupWidget('find', {}, { buttonLabel: "Find me", buttonClass: 'secondary' });
     this.controller.setupWidget('pick', {}, { buttonLabel: "Pick a place", buttonClass: 'secondary' });
     this.controller.setupWidget('logout', {}, { buttonLabel: "Log out" });
+    this.controller.setupWidget('friends', {}, { buttonLabel: "Friends" });
     
     this.controller.listen('find', Mojo.Event.tap, this.find.bind(this));
     this.controller.listen('pick', Mojo.Event.tap, this.pick);
@@ -22,6 +23,7 @@ HomeAssistant.prototype = {
     this.controller.listen('note', Mojo.Event.tap, this.note);
     this.controller.listen('photo', Mojo.Event.tap, this.photo);
     this.controller.listen('logout', Mojo.Event.tap, this.logout.bind(this));
+    this.controller.listen('friends', Mojo.Event.tap, this.friends);
     
     this.get_location();
   },
@@ -33,6 +35,7 @@ HomeAssistant.prototype = {
     });
   },
   handle_location_response: function(location) {
+    this.last_update = new Date().getTime();
     var accuracy = (location.horizAccuracy != -1 && location.vertAccuracy != -1) ? (location.horizAccuracy + location.vertAccuracy) / 2 : '';
     $j.getJSON('http://brightkite.com/places/search.json?q=' + location.latitude + ',' + location.longitude + '&cacc=' + accuracy, function(place) {
       $j('#place strong').text(place.name);
@@ -40,7 +43,7 @@ HomeAssistant.prototype = {
         $j('#place em').text(place.display_location).show();
       
       $j('#accuracy strong').text(accuracy + " meters");
-      //$j('#update > strong').everyTime('5s', this.update_time.bind(this))
+      //$j('#update strong').everyTime('5s', this.update_time.bind(this))
       
       $j('#location .title, #loading').hide();
       $j('#place, #details').show();
@@ -67,6 +70,9 @@ HomeAssistant.prototype = {
     this.credentials.remove();
     Mojo.Controller.stageController.swapScene('main');
   },
+  friends: function() {
+    Mojo.Controller.stageController.swapScene('friends');
+  },
   update_time: function() {
     var offset = Math.round((new Date().getTime() - this.last_update) / 1000);
     var time = '';
@@ -77,7 +83,7 @@ HomeAssistant.prototype = {
     else if (offset < 120) { time = '< 2 minutes ago'; }
     else if (offset < 3600) { time = '~ ' + Math.round(offset / 60) + ' minutes ago'; }
     else { time = '~ ' + Math.round((offset / 60) / 60) + ' hours ago'; }
-    $j('#update > strong').text(time);
+    $j('#update strong').text(time);
   }
 };
 
