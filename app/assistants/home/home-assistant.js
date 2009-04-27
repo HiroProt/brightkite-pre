@@ -2,7 +2,7 @@ function HomeAssistant() {}
 
 HomeAssistant.prototype = {
   setup: function() {
-    this.last_location_update = '';
+    this.last_update = '';
     this.credentials = new Mojo.Model.Cookie('credentials');
     
     /*var place = this.credentials.get().person.place
@@ -39,6 +39,9 @@ HomeAssistant.prototype = {
       if (place.display_location != place.name)
         $j('#place em').text(place.display_location).show();
       
+      $j('#accuracy strong').text(accuracy + " meters");
+      //$j('#update > strong').everyTime('5s', this.update_time.bind(this))
+      
       $j('#location .title, #loading').hide();
       $j('#place, #details').show();
     });
@@ -63,6 +66,18 @@ HomeAssistant.prototype = {
   logout: function() {
     this.credentials.remove();
     Mojo.Controller.stageController.swapScene('main');
+  },
+  update_time: function() {
+    var offset = Math.round((new Date().getTime() - this.last_update) / 1000);
+    var time = '';
+    if (offset < 10) { time = '< 10 seconds ago'; }
+    else if (offset < 20) { time = '< 20 seconds ago'; }
+    else if (offset < 30) { time = '< 30 seconds ago'; }
+    else if (offset < 60) { time = '< 1 minute ago'; }
+    else if (offset < 120) { time = '< 2 minutes ago'; }
+    else if (offset < 3600) { time = '~ ' + Math.round(offset / 60) + ' minutes ago'; }
+    else { time = '~ ' + Math.round((offset / 60) / 60) + ' hours ago'; }
+    $j('#update > strong').text(time);
   }
 };
 

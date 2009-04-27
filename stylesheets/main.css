@@ -21,10 +21,21 @@ em {
 }
 
 #home #details .title {
+  position: relative;
+  height: 15px;
   margin: 0;
   padding: 5px 15px 8px 15px;
   font-size: 0.6em;
   color: #999;
+}
+
+#home #update,
+#home #accuracy {
+  position: absolute;
+}
+
+#home #accuracy {
+  left: 170px;
 }
 
 #home #find,
@@ -36,3 +47,4 @@ em {
 .palm-button {
   text-transform: none;
 }
+

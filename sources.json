@@ -8,6 +8,5 @@
 	{ "source": "javascripts/base64.js" },
 	{ "source": "javascripts/jquery.js" },
 	{ "source": "javascripts/jquery/timers.js" },
-	{ "source": "javascripts/jquery/pretty.js" },
 	{ "source": "javascripts/global.js" }
 ]
