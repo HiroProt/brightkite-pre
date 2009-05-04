@@ -18,6 +18,7 @@ PickAssistant.prototype = {
       this.query_model
     );
     
+    this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerLarge }, { spinning: true });
     this.controller.setupWidget('search', { type: Mojo.Widget.activityButton }, { buttonLabel: "Search" });
     this.controller.listen('search', Mojo.Event.tap, this.get_results.bind(this));
     
@@ -30,6 +31,7 @@ PickAssistant.prototype = {
       $j('#results')
         .items('replace', json)
         .chain(this.template);
+      $j('#loading').hide();
       $$('#results .palm-row-wrapper').each(function(row) {
         Mojo.Event.listen($(row.id), Mojo.Event.tap, function() {
           this.pick(row.id)
