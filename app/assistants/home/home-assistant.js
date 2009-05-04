@@ -20,7 +20,6 @@ HomeAssistant.prototype = {
     }*/
     
     this.controller.setupWidget('privacy', { trueLabel: "Private", falseLabel: "Public" }, { value: "ON" });
-    this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerSmall }, { spinning: true });
     this.controller.setupWidget('find', {}, { buttonLabel: "Find me", buttonClass: 'secondary' });
     this.controller.setupWidget('pick', {}, { buttonLabel: "Pick a place", buttonClass: 'secondary' });
     this.controller.setupWidget('logout', {}, { buttonLabel: "Log out" });
@@ -34,7 +33,12 @@ HomeAssistant.prototype = {
     this.controller.listen('logout', Mojo.Event.tap, this.logout.bind(this));
     //this.controller.listen('friends', Mojo.Event.tap, this.friends);
     
-    this.get_location();
+    if (bk.picked_place.id == '') {
+      this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerSmall }, { spinning: true });
+      this.get_location();
+    }
+    else
+      this.set_location();
   },
   get_location: function() {
     this.controller.serviceRequest('palm://com.palm.location', {
@@ -43,6 +47,15 @@ HomeAssistant.prototype = {
       onSuccess: this.handle_location_response.bind(this)
     });
   },
+  set_location: function() {
+    $j('#location .title:first').hide();
+    
+    $j('#place div.name').text(bk.picked_place.name);
+    if (bk.picked_place.display_location != bk.picked_place.name)
+      $j('#place em').text(bk.picked_place.display_location).show();
+      
+    $j('#place').attr('rel', bk.picked_place.id).show();
+  },
   handle_location_response: function(location) {
     this.last_update = new Date().getTime();
     var accuracy = (location.horizAccuracy != -1 && location.vertAccuracy != -1) ? (location.horizAccuracy + location.vertAccuracy) / 2 : '';
@@ -50,18 +63,21 @@ HomeAssistant.prototype = {
     bk.latitude = location.latitude;
     bk.longitude = location.longitude;
     $j.getJSON('http://brightkite.com/places/search.json?q=' + location.latitude + ',' + location.longitude + '&cacc=' + accuracy, function(place) {
-      $j('#place strong').text(place.name);
+      $j('#place div.name').text(place.name).css('display', 'block');
       if (place.display_location != place.name)
         $j('#place em').text(place.display_location).show();
+      else
+        $j('#place em').hide();
       
-      $j('#accuracy strong').text(accuracy + " meters");
-      //$j('#update strong').everyTime('5s', this.update_time.bind(this))
+      $j('#accuracy div.name').text(accuracy + " meters");
+      //$j('#update div.name').everyTime('5s', this.update_time.bind(this))
       
       $j('#location .title, #loading').hide();
-      $j('#place, #details').show();
+      $j('#place, #details').attr('rel', place.id).show();
     });
   },
   find: function() {
+    this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerSmall }, { spinning: true });
     $j('#place, #details').hide();
     $j('#location .title:first, #loading').show();
     this.get_location();
@@ -71,6 +87,19 @@ HomeAssistant.prototype = {
   },
   checkin: function() {
     console.log("checkin");
+    var url = 'http://brightkite.com/places/' + $j('#place').attr('rel') + '/checkins';
+    console.log(url);
+    $j.ajax({
+      url: url,
+      type: 'POST',
+      data: { '_method': 'put' },
+      success: function(response) {
+        console.log("success: " + response);
+      },
+      error: function(response) {
+        console.log("error: " + response);
+      }
+    });
   },
   note: function() {
     console.log("note");

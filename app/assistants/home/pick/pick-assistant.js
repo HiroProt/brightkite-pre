@@ -3,10 +3,15 @@ function PickAssistant() {}
 PickAssistant.prototype = {
   template: {
     '.palm-row-wrapper': function(data, element) {
-      element.attr('id', data.id);
+      element.attr({
+        'id': data.id,
+        'title': data.name,
+        'rel': data.display_location
+      });
     }
   },
   setup: function() {
+    bk.picked_place.id = '';
     this.query_model = { value: "" };
     this.controller.setupWidget('query',
       { hintText: 'Address or business name' },
@@ -35,5 +40,10 @@ PickAssistant.prototype = {
   },
   pick: function(id) {
     console.log("picked: " + id);
+    element = $j('#' + id);
+    bk.picked_place.id = element.attr('id');
+    bk.picked_place.name = element.attr('title');
+    bk.picked_place.display_location = element.attr('rel');
+    Mojo.Controller.stageController.swapScene('home');
   }
 };
