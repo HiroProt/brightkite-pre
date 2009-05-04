@@ -39,6 +39,8 @@ MainAssistant.prototype = {
               request.setRequestHeader('Authorization', "Basic " + Base64.encode(username + ':' + password));
             },
             success: function(response) {
+              bk.username = username;
+              bk.password = password;
               this.load_home(username);
             }.bind(this),
             error: function(response) {
