@@ -48,3 +48,52 @@ em {
   text-transform: none;
 }
 
+#stream {
+  display: none;
+}
+
+#stream .palm-row-wrapper {
+  position: relative;
+  font-size: 0.8em;
+  padding: 6px 15px 10px 15px;
+}
+
+#stream p {
+  margin: 0;
+  padding: 0;
+}
+
+#stream .controls > span > span {
+  display: none;
+}
+
+#stream .wrapper {
+  margin-left: 55px;
+}
+
+#stream .photo_object .wrapper {
+  margin-right: 60px;
+}
+
+#stream .checkin_object .avatar {
+  width: 16px;
+  height: 16px;
+  margin-left: 24px;
+}
+
+#stream .details {
+  font-size: 0.80em;
+  color: #666;
+}
+
+#stream img.avatar {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  margin-top: 10px;
+}
+
+#stream .content img {
+  position: absolute;
+  right: 10px;
+}

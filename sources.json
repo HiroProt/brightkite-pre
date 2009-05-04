@@ -8,5 +8,9 @@
 	{ "source": "javascripts/base64.js" },
 	{ "source": "javascripts/jquery.js" },
 	{ "source": "javascripts/jquery/timers.js" },
+	{ "source": "javascripts/jquery/domec.js" },
+	{ "source": "javascripts/jquery/json.js" },
+	{ "source": "javascripts/jquery/chain.js" },
+	{ "source": "javascripts/jquery/string.js" },
 	{ "source": "javascripts/global.js" }
 ]

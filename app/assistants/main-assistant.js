@@ -25,8 +25,6 @@ MainAssistant.prototype = {
     var credentials = new Mojo.Model.Cookie('credentials');
     if (credentials && credentials.get() && credentials.get().login)
       this.load_home(credentials.get().login);
-    else
-      console.log("no valid credentials");
   },
   login: function() {
     var username = this.username_model.value;
