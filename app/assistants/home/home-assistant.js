@@ -46,6 +46,9 @@ HomeAssistant.prototype = {
   handle_location_response: function(location) {
     this.last_update = new Date().getTime();
     var accuracy = (location.horizAccuracy != -1 && location.vertAccuracy != -1) ? (location.horizAccuracy + location.vertAccuracy) / 2 : '';
+    bk.accuracy = accuracy;
+    bk.latitude = location.latitude;
+    bk.longitude = location.longitude;
     $j.getJSON('http://brightkite.com/places/search.json?q=' + location.latitude + ',' + location.longitude + '&cacc=' + accuracy, function(place) {
       $j('#place strong').text(place.name);
       if (place.display_location != place.name)
