@@ -97,3 +97,12 @@ em {
   position: absolute;
   right: 10px;
 }
+
+#pick #results .palm-row-wrapper {
+  padding: 10px 15px;
+}
+
+#pick #results .display_location {
+  font-size: 0.8em;
+  color: #666;
+}

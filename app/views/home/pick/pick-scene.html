@@ -1,6 +1,32 @@
-<div id="main">
-  <div class="palm-header left">Brightkite</div>
-  <div>
-    <p>Some stuff.</p>
+<div id="pick">
+  <div class="palm-page-header">
+    <div class="palm-page-header-wrapper">
+      <div class="title left" style="padding-top: 10px">
+        <img src="/var/usr/palm/applications/com.brightkite.app/images/logo.png" alt="Brightkite" />
+      </div>
+    </div>
+  </div>
+  <div class="palm-group">
+    <div class="palm-group-title">Search locations</div>
+  	<div class="palm-list">
+   		<div class="palm-row last">
+  			<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+  				<div class="title">
+        		<div id="query" x-mojo-element="TextField"></div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  <div id="search" x-mojo-element="Button"></div>
+  <div id="results" class="palm-list">
+    <div class="item">
+      <div class="palm-row" x-mojo-highlight="momentary">
+        <div class="palm-row-wrapper">
+          <div class="name"></div>
+          <div class="display_location"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

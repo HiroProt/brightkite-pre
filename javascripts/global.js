@@ -1,8 +1,12 @@
 var $j = jQuery.noConflict();
 
-var bk= {
+var bk = {
   username: '',
-  password: ''
+  password: '',
+  place: {},
+  latitude: 0,
+  longitude: 0,
+  accuracy: 0
 }
 
 function replace_emoji(text) {
