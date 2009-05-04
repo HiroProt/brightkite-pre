@@ -5,6 +5,15 @@ HomeAssistant.prototype = {
     this.last_update = '';
     this.credentials = new Mojo.Model.Cookie('credentials');
     
+    this.controller.setupWidget(Mojo.Menu.commandMenu, undefined,
+      { items: [
+        { items: [
+          { label: "Home", command: 'scene-home', width: 160 },
+          { label: "Activity", command: 'scene-friends', width: 160 }
+        ]} 
+      ]}
+    );
+    
     /*var place = this.credentials.get().person.place
     if (place) {
       console.log("got place: " + place.name);
@@ -15,7 +24,7 @@ HomeAssistant.prototype = {
     this.controller.setupWidget('find', {}, { buttonLabel: "Find me", buttonClass: 'secondary' });
     this.controller.setupWidget('pick', {}, { buttonLabel: "Pick a place", buttonClass: 'secondary' });
     this.controller.setupWidget('logout', {}, { buttonLabel: "Log out" });
-    this.controller.setupWidget('friends', {}, { buttonLabel: "Friends" });
+    //this.controller.setupWidget('friends', {}, { buttonLabel: "Friends" });
     
     this.controller.listen('find', Mojo.Event.tap, this.find.bind(this));
     this.controller.listen('pick', Mojo.Event.tap, this.pick);
@@ -23,7 +32,7 @@ HomeAssistant.prototype = {
     this.controller.listen('note', Mojo.Event.tap, this.note);
     this.controller.listen('photo', Mojo.Event.tap, this.photo);
     this.controller.listen('logout', Mojo.Event.tap, this.logout.bind(this));
-    this.controller.listen('friends', Mojo.Event.tap, this.friends);
+    //this.controller.listen('friends', Mojo.Event.tap, this.friends);
     
     this.get_location();
   },
