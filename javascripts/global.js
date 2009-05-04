@@ -6,7 +6,12 @@ var bk = {
   place: {},
   latitude: 0,
   longitude: 0,
-  accuracy: 0
+  accuracy: 0,
+  picked_place: {
+    name: '',
+    display_location: '',
+    id: ''
+  }
 }
 
 function replace_emoji(text) {

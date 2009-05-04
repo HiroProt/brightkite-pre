@@ -29,6 +29,10 @@ em {
   color: #999;
 }
 
+#home div.name {
+  font-weight: bold;
+}
+
 #home #update,
 #home #accuracy {
   position: absolute;
