@@ -11,7 +11,7 @@ PickAssistant.prototype = {
     }
   },
   setup: function() {
-    bk.picked_place.id = '';
+    bk.place.id = '';
     this.query_model = { value: "" };
     this.controller.setupWidget('query',
       { hintText: 'Address or business name' },
@@ -43,9 +43,9 @@ PickAssistant.prototype = {
   pick: function(id) {
     console.log("picked: " + id);
     element = $j('#' + id);
-    bk.picked_place.id = element.attr('id');
-    bk.picked_place.name = element.attr('title');
-    bk.picked_place.display_location = element.attr('rel');
+    bk.place.id = element.attr('id');
+    bk.place.name = element.attr('title');
+    bk.place.display_location = element.attr('rel');
     Mojo.Controller.stageController.swapScene('home');
   }
 };

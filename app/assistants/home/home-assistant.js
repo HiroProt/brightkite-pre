@@ -33,7 +33,7 @@ HomeAssistant.prototype = {
     this.controller.listen('logout', Mojo.Event.tap, this.logout.bind(this));
     //this.controller.listen('friends', Mojo.Event.tap, this.friends);
     
-    if (bk.picked_place.id == '') {
+    if (bk.place.id == '') {
       this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerSmall }, { spinning: true });
       this.get_location();
     }
@@ -50,11 +50,11 @@ HomeAssistant.prototype = {
   set_location: function() {
     $j('#location .title:first').hide();
     
-    $j('#place div.name').text(bk.picked_place.name);
-    if (bk.picked_place.display_location != bk.picked_place.name)
-      $j('#place em').text(bk.picked_place.display_location).show();
+    $j('#place div.name').text(bk.place.name);
+    if (bk.place.display_location != bk.place.name)
+      $j('#place em').text(bk.place.display_location).show();
       
-    $j('#place').attr('rel', bk.picked_place.id).show();
+    $j('#place').attr('rel', bk.place.id).show();
   },
   handle_location_response: function(location) {
     this.last_update = new Date().getTime();
@@ -63,6 +63,9 @@ HomeAssistant.prototype = {
     bk.latitude = location.latitude;
     bk.longitude = location.longitude;
     $j.getJSON('http://brightkite.com/places/search.json?q=' + location.latitude + ',' + location.longitude + '&cacc=' + accuracy, function(place) {
+      bk.place.id = place.id;
+      bk.place.name = place.name;
+      bk.place.display_location = place.display_location;
       $j('#place div.name').text(place.name).css('display', 'block');
       if (place.display_location != place.name)
         $j('#place em').text(place.display_location).show();
@@ -98,6 +101,7 @@ HomeAssistant.prototype = {
       },
       success: function(response) {
         console.log("success: " + response);
+        Mojo.Controller.stageController.swapScene('friends');
       },
       error: function(response) {
         console.log("error: " + response);
@@ -105,7 +109,7 @@ HomeAssistant.prototype = {
     });
   },
   note: function() {
-    console.log("note");
+    Mojo.Controller.stageController.pushScene({ name: 'note', sceneTemplate: 'home/note/note-scene' });
   },
   photo: function() {
     console.log("photo");
