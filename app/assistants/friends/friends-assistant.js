@@ -63,19 +63,22 @@ FriendsAssistant.prototype = {
       ]}
     );
     
+    this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerLarge }, { spinning: true });
     this.controller.setupWidget('more', { type: Mojo.Widget.activityButton }, { buttonLabel: "More", buttonClass: 'secondary' });
     this.controller.listen('more', Mojo.Event.tap, this.more.bind(this));
     
-    $j.getJSON('http://brightkite.com/people/' + this.user.login + '/friendstream.json', function(json) {
+    $j.getJSON('http://brightkite.com/people/' + this.user.login + '/nearbystream.json?radius=2000', function(json) {
       $j('#stream')
         .items(json)
         .chain(this.template)
         .show();
+      $j('#loading').hide();
+      $j('#more').show();
     }.bind(this));
   },
   more: function() {
     this.page++;
-    $j.getJSON('http://brightkite.com/people/' + this.user.login + '/friendstream.json?page=' + this.page, function(json) {
+    $j.getJSON('http://brightkite.com/people/' + this.user.login + '/nearbystream.json?radius=2000&page=' + this.page, function(json) {
       $j('#stream')
         .items('merge', json)
         .chain(this.template)

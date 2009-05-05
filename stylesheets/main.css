@@ -90,9 +90,21 @@ em {
   color: #666;
 }
 
+#stream .controls .count {
+  position: absolute;
+  left: 10px;
+  top: 51px;
+  font-size: 0.8em;
+  color: #999;
+}
+
+#stream .checkin_object .controls .count {
+  top: 10px;
+}
+
 #stream img.avatar {
   position: absolute;
-  top: 0px;
+  top: 1px;
   left: 10px;
   margin-top: 10px;
 }
@@ -100,6 +112,16 @@ em {
 #stream .content img {
   position: absolute;
   right: 10px;
+  margin-top: 5px;
+}
+
+#friends #loading,
+#pick #loading {
+  margin: 20px auto;
+}
+
+#friends #more {
+  display: none;
 }
 
 #pick #results .palm-row-wrapper {
@@ -109,4 +131,18 @@ em {
 #pick #results .display_location {
   font-size: 0.8em;
   color: #666;
+}
+
+#note p {
+  margin: 0 0 10px 0;
+  padding: 0;
+  color: #666;
+}
+
+#note p span {
+  color: #000;
+}
+
+#note .palm-row {
+  background: none;
 }

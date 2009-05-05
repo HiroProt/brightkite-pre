@@ -7,7 +7,7 @@ var bk = {
   latitude: 0,
   longitude: 0,
   accuracy: 0,
-  picked_place: {
+  place: {
     name: '',
     display_location: '',
     id: ''
