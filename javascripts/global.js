@@ -28,8 +28,13 @@ var bk = {
           request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.credentials.username + ':' + bk.credentials.password));
         },
         success: success_callback,
-        error: function(response) {
-          Mojo.Log.error("ajax request failed (" + response + ")");
+        error: function(response, text, error) {
+          console.log("Ajax request failed");
+          console.log("headers: " + response.getAllResponseHeaders());
+          console.log("readyState: " + response.readyState);
+          console.log("responseText: " + response.responseText);
+          console.log("status: " + response.status);
+          console.log("statusText: " + response.statusText);
           if (typeof(error_callback) != 'undefined')
             error_callback();
         }
@@ -47,7 +52,7 @@ var bk = {
             });
             bk.api.load();
           }, function() {
-            Mojo.Log.error("Invalid login");
+            console.log("Invalid login");
             bk.credentials.username = '';
             bk.credentials.password = '';
             cookie.remove();

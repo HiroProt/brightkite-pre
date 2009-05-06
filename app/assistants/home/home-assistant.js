@@ -91,10 +91,9 @@ HomeAssistant.prototype = {
   checkin: function() {
     console.log("checkin");
     bk.api.checkin($j('#place').attr('rel'));
-    /*var url = 'http://brightkite.com/places/' + $j('#place').attr('rel') + '/checkins.json';
+    //var url = 'http://brightkite.com/places/' + $j('#place').attr('rel') + '/checkins.json';
     //var url = 'http://pgl.yoyo.org/http/browser-headers.php';
-    console.log(url);
-    $j.ajax({
+    /*$j.ajax({
       url: url,
       type: 'POST',
       beforeSend: function(request) {
@@ -104,8 +103,8 @@ HomeAssistant.prototype = {
         console.log("success: " + response);
         Mojo.Controller.stageController.swapScene('friends');
       },
-      error: function(response) {
-        console.log("error: " + response);
+      error: function(response, text, error) {
+        console.log("error: " + response + ", " + text + ", " + error);
       }
     });*/
   },
