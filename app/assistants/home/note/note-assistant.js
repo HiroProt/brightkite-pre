@@ -13,13 +13,14 @@ NoteAssistant.prototype = {
     $j('p span').text(bk.place.name);
   },
   post: function() {
-    var url = 'http://brightkite.com/places/' + bk.place.id + '/notes.json';
+    bk.api.note(bk.place.id, this.body_model.value);
+    /*var url = 'http://brightkite.com/places/' + bk.place.id + '/notes.json';
     $j.ajax({
       url: url,
       type: 'POST',
       data: { 'note[body]': this.body_model.value },
       beforeSend: function(request) {
-        request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.username + ':' + bk.password));
+        request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.credentials.username + ':' + bk.credentials.password));
       },
       success: function(response) {
         console.log("success: " + response);
@@ -28,6 +29,6 @@ NoteAssistant.prototype = {
       error: function(response) {
         console.log("error: " + response);
       }
-    });
+    });*/
   }
 };
