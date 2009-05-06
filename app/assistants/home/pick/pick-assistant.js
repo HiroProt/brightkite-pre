@@ -26,7 +26,7 @@ PickAssistant.prototype = {
   },
   get_results: function() {
     var query = (this.query_model.value == '') ? '*' : this.query_model.value;
-    var url = 'http://brightkite.com/places/search?q=' + query + '&clat=' + bk.latitude + '&clng=' + bk.longitude + '&cacc=' + bk.accuracy;
+    var url = 'http://brightkite.com/places/search?q=' + query + '&clat=' + bk.location.latitude + '&clng=' + bk.location.longitude + '&cacc=' + bk.location.accuracy;
     $j.getJSON(url, function(json) {
       $j('#results')
         .items('replace', json)

@@ -67,14 +67,23 @@ FriendsAssistant.prototype = {
     this.controller.setupWidget('more', { type: Mojo.Widget.activityButton }, { buttonLabel: "More", buttonClass: 'secondary' });
     this.controller.listen('more', Mojo.Event.tap, this.more.bind(this));
     
-    $j.getJSON('http://brightkite.com/people/' + this.user.login + '/nearbystream.json?radius=2000', function(json) {
+    bk.api.stream('/people/' + bk.credentials.username + '/nearbystream.json?radius=2000', function(response) {
+      $j('#stream')
+        .items($j.evalJSON(response))
+        .chain(this.template)
+        .show();
+      $j('#loading').hide();
+      $j('#more').show();
+    }.bind(this));
+    
+    /*$j.getJSON('http://brightkite.com/people/' + this.user.login + '/nearbystream.json?radius=2000', function(json) {
       $j('#stream')
         .items(json)
         .chain(this.template)
         .show();
       $j('#loading').hide();
       $j('#more').show();
-    }.bind(this));
+    }.bind(this));*/
   },
   more: function() {
     this.page++;

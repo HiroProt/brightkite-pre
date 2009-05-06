@@ -59,9 +59,9 @@ HomeAssistant.prototype = {
   handle_location_response: function(location) {
     this.last_update = new Date().getTime();
     var accuracy = (location.horizAccuracy != -1 && location.vertAccuracy != -1) ? (location.horizAccuracy + location.vertAccuracy) / 2 : '';
-    bk.accuracy = accuracy;
-    bk.latitude = location.latitude;
-    bk.longitude = location.longitude;
+    bk.location.accuracy = accuracy;
+    bk.location.latitude = location.latitude;
+    bk.location.longitude = location.longitude;
     $j.getJSON('http://brightkite.com/places/search.json?q=' + location.latitude + ',' + location.longitude + '&cacc=' + accuracy, function(place) {
       bk.place.id = place.id;
       bk.place.name = place.name;
@@ -90,14 +90,15 @@ HomeAssistant.prototype = {
   },
   checkin: function() {
     console.log("checkin");
-    var url = 'http://brightkite.com/places/' + $j('#place').attr('rel') + '/checkins.json';
+    bk.api.checkin($j('#place').attr('rel'));
+    /*var url = 'http://brightkite.com/places/' + $j('#place').attr('rel') + '/checkins.json';
     //var url = 'http://pgl.yoyo.org/http/browser-headers.php';
     console.log(url);
     $j.ajax({
       url: url,
       type: 'POST',
       beforeSend: function(request) {
-        request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.username + ':' + bk.password));
+        request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.credentials.username + ':' + bk.credentials.password));
       },
       success: function(response) {
         console.log("success: " + response);
@@ -106,7 +107,7 @@ HomeAssistant.prototype = {
       error: function(response) {
         console.log("error: " + response);
       }
-    });
+    });*/
   },
   note: function() {
     Mojo.Controller.stageController.pushScene({ name: 'note', sceneTemplate: 'home/note/note-scene' });
