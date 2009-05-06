@@ -90,15 +90,15 @@ HomeAssistant.prototype = {
   },
   checkin: function() {
     console.log("checkin");
-    var url = 'http://brightkite.com/places/' + $j('#place').attr('rel') + '/checkins.json';
+    var url = 'http://brightkite.com/places/' + $j('#place').attr('rel') + '/checkins.xml';
     //var url = 'http://pgl.yoyo.org/http/browser-headers.php';
     console.log(url);
     $j.ajax({
       url: url,
       type: 'POST',
-      beforeSend: function(request) {
+/*      beforeSend: function(request) {
         request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.username + ':' + bk.password));
-      },
+      },*/
       success: function(response) {
         console.log("success: " + response);
         Mojo.Controller.stageController.swapScene('friends');
