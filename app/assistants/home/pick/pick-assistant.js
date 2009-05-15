@@ -1,6 +1,7 @@
 function PickAssistant() {}
 
 PickAssistant.prototype = {
+
   template: {
     '.palm-row-wrapper': function(data, element) {
       element.attr({
@@ -10,6 +11,7 @@ PickAssistant.prototype = {
       });
     }
   },
+
   setup: function() {
     bk.place.id = '';
     this.query_model = { value: "" };
@@ -48,4 +50,6 @@ PickAssistant.prototype = {
     Mojo.Controller.stageController.popScene();
     //bk.scene('home');
   }
+
 };
+
