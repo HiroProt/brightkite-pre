@@ -41,11 +41,11 @@ PickAssistant.prototype = {
     }.bind(this));
   },
   pick: function(id) {
-    console.log("picked: " + id);
     element = $j('#' + id);
     bk.place.id = element.attr('id');
     bk.place.name = element.attr('title');
     bk.place.display_location = element.attr('rel');
-    Mojo.Controller.stageController.swapScene('home');
+    Mojo.Controller.stageController.popScene();
+    //bk.scene('home');
   }
 };

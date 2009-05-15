@@ -17,9 +17,21 @@ var bk = {
     display_location: '',
     id: ''
   },
+  object: {},
+  scene: function(target) {
+    var scenes = Mojo.Controller.stageController.getScenes();
+    if (scenes.length > 1) {
+      $j(scenes).each(function(index, scene) {
+        if (scene != Mojo.Controller.stageController.activeScene())
+          scene.popScene();
+      });
+    }
+    Mojo.Controller.stageController.swapScene(target);
+  },
   api: {
     call: function(path, type, data, success_callback, error_callback) {
-      console.log("API call: " + 'http://brightkite.com' + path);
+      data.dummy = true; // workaround for webos turning empty post requests into gets
+      /*console.log("API call: " + 'http://brightkite.com' + path);*/
       $j.ajax({
         url: 'http://brightkite.com' + path,
         type: type,
@@ -28,13 +40,8 @@ var bk = {
           request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.credentials.username + ':' + bk.credentials.password));
         },
         success: success_callback,
-        error: function(response, text, error) {
-          console.log("Ajax request failed");
-          console.log("headers: " + response.getAllResponseHeaders());
-          console.log("readyState: " + response.readyState);
-          console.log("responseText: " + response.responseText);
-          console.log("status: " + response.status);
-          console.log("statusText: " + response.statusText);
+        error: function() {
+          console.log("Error: ajax request failed");
           if (typeof(error_callback) != 'undefined')
             error_callback();
         }
@@ -63,28 +70,45 @@ var bk = {
     load: function() {
       bk.api.call('/people/' + bk.credentials.username + '.json', 'get', {}, function(response) {
         bk.person = $j.evalJSON(response);
-        Mojo.Controller.stageController.swapScene('home');
+        bk.scene('home');
       });
     },
     checkin: function(id) {
       bk.api.call('/places/' + id + '/checkins.json', 'post', {}, function(response) {
-        Mojo.Controller.stageController.swapScene('friends');
+        bk.scene('nearby');
       });
     },
     note: function(id, body) {
       bk.api.call('/places/' + id + '/notes.json', 'post', {
           'note[body]': body
         }, function(response) {
-          Mojo.Controller.stageController.swapScene('friends');
+          bk.scene('nearby');
       });
     },
     photo: function() {
-      
+      Mojo.Controller.stageController.pushScene(
+        { appId :'com.palm.app.camera', name: 'capture' },
+        { sublaunch : true }
+      );
+      console.log("camera done");
     },
     stream: function(path, callback) {
       bk.api.call(path, 'get', {}, callback);
+    },
+    comments: function(id, callback) {
+      bk.api.call('/objects/' + id + '/comments.json', 'get', {}, callback);
+    },
+    privacy: function(mode, callback) {
+      bk.api.call('/people/' + bk.credentials.username + '/config.json', 'post', {
+        '_method': 'put',
+        'person[privacy_mode]': mode
+      }, callback);
     }
-  }
+  },
+  app_menu: { items: [
+    { label: "Something", command: 'do-something' },
+    { label: "Somewhere", command: 'do-somewhere' }
+  ]}
 }
 
 function replace_emoji(text) {

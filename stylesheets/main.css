@@ -86,7 +86,7 @@ em {
 }
 
 #stream .details {
-  font-size: 0.80em;
+  font-size: 0.8em;
   color: #666;
 }
 
@@ -94,8 +94,13 @@ em {
   position: absolute;
   left: 10px;
   top: 51px;
-  font-size: 0.8em;
+  font-size: 0.6em;
   color: #999;
+}
+
+#stream .note_object,
+#stream .photo_object {
+  min-height: 48px;
 }
 
 #stream .checkin_object .controls .count {
@@ -145,4 +150,74 @@ em {
 
 #note .palm-row {
   background: none;
+}
+
+#object {
+  display: none;
+}
+
+#object > .item .info {
+  padding: 10px 10px 0 10px;
+}
+
+#object > .item .avatar {
+  float: left;
+}
+
+#object > .item  .username,
+#object > .item  .details {
+  position: relative;
+  top: -5px;
+  margin: 0 0 0 58px;
+  padding: 0;
+}
+
+#object > .item  .details {
+  font-size: 0.7em;
+  color: #666;
+}
+
+#object > .item .object_content {
+  clear: both;
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff;
+}
+
+#object > .item  .object_content img {
+  width: 100%;
+}
+
+#object #comments {
+  display: none;
+}
+
+#object #loading {
+  margin: 0 auto;
+}
+
+#comments .item {
+  margin: 15px 0 0 16px;
+  padding: 0;
+}
+
+#comments .avatar {
+  float: left;
+  margin-left: 10px;
+}
+
+#comments .comment_content {
+  position: relative;
+  top: -5px;
+  margin: 0 0 0 52px;
+}
+
+#comments .username,
+#comments .comment {
+  font-size: 0.8em;
+}
+
+#comments .time {
+  font-size: 0.7em;
+  color: #666;
 }

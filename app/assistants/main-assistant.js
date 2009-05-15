@@ -26,7 +26,6 @@ MainAssistant.prototype = {
     if (cookie && cookie.get() && cookie.get().username && cookie.get().password) {
       var username = cookie.get().username;
       var password = cookie.get().password;
-      console.log("username: " + username + ", password: " + password);
       if (username != '' && password != '')
         bk.api.login(username, password);
     }

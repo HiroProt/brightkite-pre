@@ -1,11 +1,11 @@
-function FriendsAssistant() {}
+function NearbyAssistant() {}
 
-FriendsAssistant.prototype = {
-  user: {},
+NearbyAssistant.prototype = {
   page: 1,
   template: {
     '.palm-row-wrapper': function(data, element) {
       element.addClass(data.object_type + '_object');
+      element.attr('id', data.id);
     },
     '.palm-row-wrapper > img.avatar': function(data, element) {
       element
@@ -52,8 +52,6 @@ FriendsAssistant.prototype = {
     }
   },
   setup: function() {
-    this.user = new Mojo.Model.Cookie('credentials').get();
-    
     this.controller.setupWidget(Mojo.Menu.commandMenu, undefined,
       { items: [
         { items: [
@@ -68,30 +66,41 @@ FriendsAssistant.prototype = {
     this.controller.listen('more', Mojo.Event.tap, this.more.bind(this));
     
     bk.api.stream('/people/' + bk.credentials.username + '/nearbystream.json?radius=2000', function(response) {
+      var response_object = $j.evalJSON(response);
       $j('#stream')
-        .items($j.evalJSON(response))
+        .items(response_object)
         .chain(this.template)
         .show();
+      $j(response_object).each(function(index, object) {
+        this.controller.listen(object.id, Mojo.Event.tap, function() {
+          bk.object = object;
+          Mojo.Controller.stageController.pushScene('object');
+        });
+      }.bind(this));
       $j('#loading').hide();
       $j('#more').show();
     }.bind(this));
-    
-    /*$j.getJSON('http://brightkite.com/people/' + this.user.login + '/nearbystream.json?radius=2000', function(json) {
-      $j('#stream')
-        .items(json)
-        .chain(this.template)
-        .show();
-      $j('#loading').hide();
-      $j('#more').show();
-    }.bind(this));*/
   },
   more: function() {
     this.page++;
-    $j.getJSON('http://brightkite.com/people/' + this.user.login + '/nearbystream.json?radius=2000&page=' + this.page, function(json) {
+    bk.api.stream('/people/' + bk.credentials.username + '/nearbystream.json?radius=2000&page=' + this.page, function(response) {
+      var response_object = $j.evalJSON(response)
+      $j('#stream')
+        .items('merge', response_object)
+        .chain(this.template)
+      $j(response_object).each(function(index, object) {
+        this.controller.listen(object.id, Mojo.Event.tap, function() {
+          bk.object = object;
+          Mojo.Controller.stageController.pushScene('object');
+        });
+      }.bind(this));
+      $('more').mojo.deactivate();
+    }.bind(this));
+    /*$j.getJSON('http://brightkite.com/people/' + bk.credentials.username + '/nearbystream.json?radius=2000&page=' + this.page, function(json) {
       $j('#stream')
         .items('merge', json)
         .chain(this.template)
       $('more').mojo.deactivate();
-    }.bind(this));
+    }.bind(this));*/
   }
 };
