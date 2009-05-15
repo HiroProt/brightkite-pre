@@ -58,5 +58,11 @@ ObjectAssistant.prototype = {
       }.bind(this));
     }
     this.controller.setupWidget('post', {}, { buttonLabel: "Post a comment" });
+    this.controller.listen('post', Mojo.Event.tap, function() {
+      Mojo.Controller.stageController.pushScene('comment');
+    });
+  },
+  activate: function() {
+    
   }
 };
