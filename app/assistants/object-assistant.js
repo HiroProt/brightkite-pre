@@ -62,7 +62,17 @@ ObjectAssistant.prototype = {
       Mojo.Controller.stageController.pushScene('comment');
     });
   },
-  activate: function() {
-    
+  activate: function(new_comment) {
+    if (new_comment) {
+      $j('#comments').hide();
+      $j('#loading').show();
+      bk.api.comments(bk.object.id, function(response) {
+        $j('#comments')
+          .items('replace', $j.evalJSON(response))
+          .chain(this.comment_template)
+          .show();
+        $j('#loading').hide();
+      }.bind(this));
+    }
   }
 };

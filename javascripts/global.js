@@ -30,6 +30,7 @@ var bk = {
   },
   api: {
     call: function(path, type, data, success_callback, error_callback) {
+      console.log("API call: " + path + " (" + type + ")");
       data.dummy = true; // workaround for webos turning empty post requests into gets
       /*console.log("API call: " + 'http://brightkite.com' + path);*/
       $j.ajax({
@@ -81,7 +82,7 @@ var bk = {
     note: function(id, body) {
       bk.api.call('/places/' + id + '/notes.json', 'post', {
           'note[body]': body
-        }, function(response) {
+        }, function() {
           bk.scene('nearby');
       });
     },
@@ -97,6 +98,14 @@ var bk = {
     },
     comments: function(id, callback) {
       bk.api.call('/objects/' + id + '/comments.json', 'get', {}, callback);
+    },
+    comment: function(id, comment) {
+      bk.api.call('/objects/' + id + '/comments.json', 'post', {
+          'comment[comment]': comment
+        }, function() {
+          Mojo.Controller.stageController.popScene(true);
+        }
+      );
     },
     privacy: function(mode, callback) {
       bk.api.call('/people/' + bk.credentials.username + '/config.json', 'post', {
