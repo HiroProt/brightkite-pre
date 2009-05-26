@@ -8,6 +8,7 @@
 	{ "source": "app/assistants/object-assistant.js" },
 	{ "source": "app/assistants/support-assistant.js" },
 	{ "source": "app/assistants/comment-assistant.js" },
+	{ "source": "app/assistants/signup-assistant.js" },
 	{ "source": "javascripts/base64.js" },
 	{ "source": "javascripts/jquery.js" },
 	{ "source": "javascripts/jquery/timers.js" },

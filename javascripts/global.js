@@ -38,13 +38,17 @@ var bk = {
         type: type,
         data: data,
         beforeSend: function(request) {
-          request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.credentials.username + ':' + bk.credentials.password));
+          //if (bk.credentials.username && bk.credentials.password)
+            request.setRequestHeader('Authorization', "Basic " + Base64.encode(bk.credentials.username + ':' + bk.credentials.password));
         },
-        success: success_callback,
-        error: function() {
+        success: function(response) {
+          if (typeof(success_callback) != 'undefined')
+            success_callback(response);
+        },
+        error: function(response) {
           console.log("Error: ajax request failed");
           if (typeof(error_callback) != 'undefined')
-            error_callback();
+            error_callback(response);
         }
       });
     },
@@ -59,12 +63,13 @@ var bk = {
               password: bk.credentials.password
             });
             bk.api.load();
-          }, function() {
+          }, function(response) {
             console.log("Invalid login");
             bk.credentials.username = '';
             bk.credentials.password = '';
             cookie.remove();
             $('login').mojo.deactivate();
+            bk.error(response.responseText)
         })
       });
     },
@@ -91,7 +96,6 @@ var bk = {
         { appId :'com.palm.app.camera', name: 'capture' },
         { sublaunch : true }
       );
-      console.log("camera done");
     },
     stream: function(path, callback) {
       bk.api.call(path, 'get', {}, callback);
@@ -112,7 +116,26 @@ var bk = {
         '_method': 'put',
         'person[privacy_mode]': mode
       }, callback);
+    },
+    signup: function(login, email, password, password_confirmation) {
+      var data = {
+        'user[login]': login,
+        'user[email]': email,
+        'user[password]': password,
+        'user[password_confirmation]': password_confirmation
+      };
+      bk.api.call('/account/signup', 'post', data, function(response) {
+          console.log("signup success: " + response);
+          bk.api.login(login, password);
+        }, function(response) {
+          console.log("signup error: " + response);
+      });
     }
+  },
+  error: function(message) {
+    $j('#error')
+      .show()
+      .find('.error-message').text(message);
   },
   app_menu: { items: [
     { label: "Something", command: 'do-something' },

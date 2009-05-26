@@ -19,8 +19,11 @@ MainAssistant.prototype = {
       { type: Mojo.Widget.activityButton },
       { buttonLabel: "Log in" }
     );
+    
+    this.controller.setupWidget('signup', {}, { buttonLabel: "Sign up" });
 
     Mojo.Event.listen($('login'), Mojo.Event.tap, this.login.bind(this));
+    Mojo.Event.listen($('signup'), Mojo.Event.tap, this.signup);
     
     var cookie = new Mojo.Model.Cookie('credentials');
     if (cookie && cookie.get() && cookie.get().username && cookie.get().password) {
@@ -31,6 +34,18 @@ MainAssistant.prototype = {
     }
   },
   login: function() {
-    bk.api.login(this.username_model.value, this.password_model.value);
+    if (this.username_model.value == "") {
+      bk.error("Username can't be empty");
+      $('login').mojo.deactivate();
+    }
+    else if (this.password_model.value == "") {
+      bk.error("Password can't be empty");
+      $('login').mojo.deactivate();
+    }
+    else
+      bk.api.login(this.username_model.value, this.password_model.value);
+  },
+  signup: function() {
+    bk.scene('signup');
   }
 };

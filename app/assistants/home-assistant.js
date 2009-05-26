@@ -33,7 +33,9 @@ HomeAssistant.prototype = {
     else
       this.set_location();
   },
-  activate: function() {
+  activate: function(response) {
+    console.log("activate, response: " + response);
+    
     if (bk.place.id == '') {
       this.controller.setupWidget('loading', { spinnerSize: Mojo.Widget.spinnerSmall }, { spinning: true });
       this.get_location();
