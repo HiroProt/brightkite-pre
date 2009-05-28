@@ -28,11 +28,13 @@ PickAssistant.prototype = {
   },
   get_results: function() {
     var query = (this.query_model.value == '') ? '*' : this.query_model.value;
-    var url = 'http://brightkite.com/places/search?q=' + query + '&clat=' + bk.location.latitude + '&clng=' + bk.location.longitude + '&cacc=' + bk.location.accuracy;
+    var url = 'http://brightkite.com/places/search.json?q=' + query + '&clat=' + bk.location.latitude + '&clng=' + bk.location.longitude + '&cacc=' + bk.location.accuracy;
     $j.getJSON(url, function(json) {
-      $j('#results')
-        .items('replace', json)
-        .chain(this.template);
+      if (json.length > 1)
+        $j('#results').items('replace', json);
+      else
+        $j('#results').item('replace', json);
+      $j('#results').chain(this.template);
       $j('#loading').hide();
       $$('#results .palm-row-wrapper').each(function(row) {
         Mojo.Event.listen($(row.id), Mojo.Event.tap, function() {
