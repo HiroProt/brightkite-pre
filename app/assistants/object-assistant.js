@@ -66,6 +66,9 @@ ObjectAssistant.prototype = {
     });
     this.controller.listen('avatar', Mojo.Event.tap, function() {
       bk.scene('person')
+    });
+    this.controller.listen('username', Mojo.Event.tap, function() {
+      bk.scene('person')
     })
   },
   activate: function(new_comment) {

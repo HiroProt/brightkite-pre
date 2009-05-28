@@ -17,16 +17,19 @@ var bk = {
     display_location: '',
     id: ''
   },
+  view_place: {},
+  view_person: {},
   object: {},
-  scene: function(target) {
-    var scenes = Mojo.Controller.stageController.getScenes();
+  scene: function(target, only) {
+    if (only == true)
+      Mojo.Controller.stageController.popScenesTo(target);
+    Mojo.Controller.stageController.swapScene(target);
     /*if (scenes.length > 1) {
       $j(scenes).each(function(index, scene) {
         if (scene != Mojo.Controller.stageController.activeScene())
           scene.popScene();
       });
     }*/
-    Mojo.Controller.stageController.swapScene(target);
   },
   api: {
     call: function(path, type, data, success_callback, error_callback) {
@@ -76,7 +79,7 @@ var bk = {
     load: function() {
       bk.api.call('/people/' + bk.credentials.username + '.json', 'get', {}, function(response) {
         bk.person = $j.evalJSON(response);
-        bk.scene('home');
+        bk.scene('home', true);
       });
     },
     checkin: function(id) {
