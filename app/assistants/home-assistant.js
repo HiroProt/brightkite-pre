@@ -7,9 +7,9 @@ HomeAssistant.prototype = {
     
     this.controller.setupWidget(Mojo.Menu.commandMenu, undefined,
       { items: [
-        { items: [
+        { toggleCmd: 'scene-home', items: [
           { label: "Home", command: 'scene-home', width: 160 },
-          { label: "Activity", command: 'scene-nearby', width: 160 }
+          { label: "Activity", command: 'scene-nearbystream', width: 160 }
         ]} 
       ]}
     );

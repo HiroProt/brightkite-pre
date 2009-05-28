@@ -1,6 +1,6 @@
-function NearbyAssistant() {}
+function FriendstreamAssistant() {}
 
-NearbyAssistant.prototype = {
+FriendstreamAssistant.prototype = {
   page: 1,
   template: {
     '.palm-row-wrapper': function(data, element) {
@@ -52,11 +52,21 @@ NearbyAssistant.prototype = {
     }
   },
   setup: function() {
+    this.controller.setupWidget(Mojo.Menu.viewMenu, undefined,
+      { items: [
+        { toggleCmd: 'scene-friendstream', items: [
+          { label: "Friends", command: 'scene-friendstream', width: 105 },
+          { label: "Nearby", command: 'scene-nearbystream', width: 105 },
+          { label: "Universe", command: 'scene-universe', width: 110 }
+        ]}
+      ]}
+    );
+    
     this.controller.setupWidget(Mojo.Menu.commandMenu, undefined,
       { items: [
-        { items: [
+        { toggleCmd: 'scene-nearbystream', items: [
           { label: "Home", command: 'scene-home', width: 160 },
-          { label: "Activity", command: 'scene-friends', width: 160 }
+          { label: "Activity", command: 'scene-nearbystream', width: 160 }
         ]} 
       ]}
     );
@@ -65,7 +75,7 @@ NearbyAssistant.prototype = {
     this.controller.setupWidget('more', { type: Mojo.Widget.activityButton }, { buttonLabel: "More", buttonClass: 'secondary' });
     this.controller.listen('more', Mojo.Event.tap, this.more.bind(this));
     
-    bk.api.stream('/people/' + bk.credentials.username + '/nearbystream.json?radius=2000', function(response) {
+    bk.api.stream('/people/' + bk.credentials.username + '/friendstream.json', function(response) {
       var response_object = $j.evalJSON(response);
       $j('#stream')
         .items(response_object)
@@ -83,7 +93,7 @@ NearbyAssistant.prototype = {
   },
   more: function() {
     this.page++;
-    bk.api.stream('/people/' + bk.credentials.username + '/nearbystream.json?radius=2000&page=' + this.page, function(response) {
+    bk.api.stream('/people/' + bk.credentials.username + '/friendstream.json?page=' + this.page, function(response) {
       var response_object = $j.evalJSON(response)
       $j('#stream')
         .items('merge', response_object)

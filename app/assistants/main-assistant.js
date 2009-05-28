@@ -46,6 +46,7 @@ MainAssistant.prototype = {
       bk.api.login(this.username_model.value, this.password_model.value);
   },
   signup: function() {
-    bk.scene('signup');
+    Mojo.Controller.stageController.pushScene('signup');
+    //bk.scene('signup');
   }
 };

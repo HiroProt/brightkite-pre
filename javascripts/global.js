@@ -20,12 +20,12 @@ var bk = {
   object: {},
   scene: function(target) {
     var scenes = Mojo.Controller.stageController.getScenes();
-    if (scenes.length > 1) {
+    /*if (scenes.length > 1) {
       $j(scenes).each(function(index, scene) {
         if (scene != Mojo.Controller.stageController.activeScene())
           scene.popScene();
       });
-    }
+    }*/
     Mojo.Controller.stageController.swapScene(target);
   },
   api: {
@@ -81,14 +81,14 @@ var bk = {
     },
     checkin: function(id) {
       bk.api.call('/places/' + id + '/checkins.json', 'post', {}, function(response) {
-        bk.scene('nearby');
+        bk.scene('nearbystream');
       });
     },
     note: function(id, body) {
       bk.api.call('/places/' + id + '/notes.json', 'post', {
           'note[body]': body
         }, function() {
-          bk.scene('nearby');
+          bk.scene('nearbystream');
       });
     },
     photo: function() {

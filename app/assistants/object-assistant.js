@@ -61,6 +61,12 @@ ObjectAssistant.prototype = {
     this.controller.listen('post', Mojo.Event.tap, function() {
       Mojo.Controller.stageController.pushScene('comment');
     });
+    this.controller.listen('details', Mojo.Event.tap, function() {
+      bk.scene('place');
+    });
+    this.controller.listen('avatar', Mojo.Event.tap, function() {
+      bk.scene('person')
+    })
   },
   activate: function(new_comment) {
     if (new_comment) {

@@ -120,12 +120,12 @@ em {
   margin-top: 5px;
 }
 
-#friends #loading,
+#activity #loading,
 #pick #loading {
   margin: 20px auto;
 }
 
-#friends #more {
+#activity #more {
   display: none;
 }
 
