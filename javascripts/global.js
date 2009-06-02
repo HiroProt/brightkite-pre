@@ -79,7 +79,10 @@ var bk = {
     load: function() {
       bk.api.call('/people/' + bk.credentials.username + '.json', 'get', {}, function(response) {
         bk.person = $j.evalJSON(response);
-        bk.scene('home', true);
+        bk.api.call('/people/' + bk.credentials.username + '/config.json', 'get', {}, function(config_response) {
+          bk.person.config = $j.evalJSON(config_response);
+          bk.scene('home', true);
+        });
       });
     },
     checkin: function(id) {

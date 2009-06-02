@@ -221,3 +221,13 @@ em {
   font-size: 0.7em;
   color: #666;
 }
+
+#person .palm-page-header .subtitle {
+  margin-left: 42px;
+}
+
+#person #join,
+#person #nudge {
+  float: left;
+  width: 160px;
+}

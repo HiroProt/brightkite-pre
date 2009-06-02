@@ -14,7 +14,8 @@ HomeAssistant.prototype = {
       ]}
     );
     
-    this.controller.setupWidget('privacy', { trueLabel: "Private", falseLabel: "Public" }, { value: "ON" });
+    console.log("privacy mode: " + bk.person.config.privacy_mode);
+    this.controller.setupWidget('privacy', { trueLabel: "Private", falseLabel: "Public" }, { value: (bk.person.config.privacy_mode == 'private') ? true : false });
     this.controller.setupWidget('find', {}, { buttonLabel: "Find me", buttonClass: 'secondary' });
     this.controller.setupWidget('pick', {}, { buttonLabel: "Pick a place", buttonClass: 'secondary' });
     this.controller.setupWidget('logout', {}, { buttonLabel: "Log out", buttonClass: 'secondary' });
