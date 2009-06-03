@@ -17,8 +17,12 @@ PlaceAssistant.prototype = {
     this.controller.setupWidget('checkin', {}, { buttonLabel: "Check in here" });
     
     this.controller.listen('placestream', Mojo.Event.tap, this.placestream);
+    this.controller.listen('nearby', Mojo.Event.tap, this.nearby);
   },
   placestream: function() {
     Mojo.Controller.stageController.pushScene('placestream');
+  },
+  nearby: function() {
+    Mojo.Controller.stageController.pushScene('nearby');
   }
 };

@@ -121,7 +121,8 @@ em {
 }
 
 #activity #loading,
-#pick #loading {
+#pick #loading,
+#nearby #loading {
   margin: 20px auto;
 }
 
@@ -230,4 +231,41 @@ em {
 #person #nudge {
   float: left;
   width: 160px;
+}
+
+#nearby #people {
+  display: none;
+}
+
+#nearby .palm-row-wrapper {
+  padding: 5px 15px;
+}
+
+#nearby img {
+  float: left;
+  margin-right: 15px;
+}
+
+#nearby #people .title {
+  margin: 0;
+  padding: 0;
+}
+
+#nearby h1 {
+  position: relative;
+  top: -5px;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+#nearby p {
+  position: relative;
+  top: -3px;
+  margin: 0;
+  padding: 0;
+  font-size: 0.6em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
